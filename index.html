@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VGM Engineering & Consulting | Soluciones de Ingeniería</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS Personalizado Externo -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white overflow-x-hidden"
+  >
+    <!-- ================= NAVBAR STICKY & DRAWER ================= -->
+    <header
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="#inicio" class="flex items-center gap-2 group">
+            <div
+              class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform"
+            >
+              V
+            </div>
+            <span class="font-extrabold text-xl tracking-tight text-slate-900"
+              >VGM</span
+            >
+          </a>
+
+          <!-- Menu Desktop -->
+          <nav
+            class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600"
+          >
+            <a
+              href="#inicio"
+              data-i18n="nav_start"
+              class="hover:text-blue-600 transition-colors"
+              >Inicio</a
+            >
+            <a
+              href="#servicios"
+              data-i18n="nav_services"
+              class="hover:text-blue-600 transition-colors"
+              >Servicios</a
+            >
+            <a
+              href="#metodologia"
+              data-i18n="nav_methodology"
+              class="hover:text-blue-600 transition-colors"
+              >Metodología</a
+            >
+            <a
+              href="#herramientas"
+              data-i18n="nav_tools"
+              class="hover:text-blue-600 transition-colors"
+              >Herramientas</a
+            >
+            <a
+              href="#nosotros"
+              data-i18n="nav_leadership"
+              class="hover:text-blue-600 transition-colors"
+              >Liderazgo</a
+            >
+            <a
+              href="#faq"
+              data-i18n="nav_faq"
+              class="hover:text-blue-600 transition-colors"
+              >FAQ</a
+            >
+          </nav>
+
+          <!-- Actions Desktop -->
+          <div class="hidden md:flex items-center gap-4">
+            <button
+              id="lang-toggle"
+              class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 hover:border-blue-600 text-slate-700 hover:text-blue-600 transition-all"
+            >
+              <i data-lucide="globe" class="w-4 h-4"></i>
+              <span id="lang-label">ES / EN</span>
+            </button>
+
+            <a
+              href="#contacto"
+              data-i18n="cta_consulting"
+              class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition-all hover:-translate-y-0.5"
+            >
+              Solicitar Consultoría
+            </a>
+          </div>
+
+          <!-- Controls Mobile -->
+          <div class="flex items-center gap-2 md:hidden">
+            <button
+              id="lang-toggle-mobile"
+              class="p-2 text-xs font-bold text-slate-700 border border-slate-200 rounded-lg"
+            >
+              ES/EN
+            </button>
+            <button
+              id="menu-btn"
+              type="button"
+              class="p-2 text-slate-600 hover:text-blue-600 rounded-lg"
+            >
+              <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE LATERAL (DRAWER MÓVIL) -->
+    <div
+      id="drawer-backdrop"
+      class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300"
+    ></div>
+    <aside
+      id="drawer-menu"
+      class="fixed top-0 right-0 z-50 w-72 h-full bg-white shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+    >
+      <div>
+        <div
+          class="flex items-center justify-between pb-6 mb-6 border-b border-slate-100"
+        >
+          <span class="font-bold text-lg text-slate-900">Menú</span>
+          <button
+            id="drawer-close"
+            class="p-2 text-slate-500 hover:text-slate-800 rounded-lg"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <nav class="space-y-4 font-medium text-slate-700">
+          <a
+            href="#inicio"
+            data-i18n="nav_start"
+            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >Inicio</a
+          >
+          <a
+            href="#servicios"
+            data-i18n="nav_services"
+            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >Servicios</a
+          >
+          <a
+            href="#metodologia"
+            data-i18n="nav_methodology"
+            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >Metodología</a
+          >
+          <a
+            href="#herramientas"
+            data-i18n="nav_tools"
+            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >Herramientas</a
+          >
+          <a
+            href="#nosotros"
+            data-i18n="nav_leadership"
+            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >Liderazgo</a
+          >
+          <a
+            href="#faq"
+            data-i18n="nav_faq"
+            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
+            >FAQ</a
+          >
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-slate-100">
+        <a
+          href="#contacto"
+          data-i18n="cta_consulting"
+          class="mobile-link block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition-all"
+        >
+          Solicitar Consultoría
+        </a>
+      </div>
+    </aside>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section
+      id="inicio"
+      class="relative pt-8 pb-16 md:pt-20 md:pb-28 overflow-hidden bg-slate-900 text-white"
+    >
+      <div class="hero-glow-1"></div>
+      <div class="hero-glow-2"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+        <!-- Mini Banner / Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 font-medium text-xs uppercase tracking-widest mb-4 backdrop-blur-md"
+        >
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span data-i18n="hero_badge"
+            >Consultoría & Ingeniería de Alta Exigencia</span
+          >
+        </div>
+
+        <!-- Titular Principal -->
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6"
+        >
+          <span data-i18n="hero_title_1">Ingeniería Mecánica de</span>
+          <span
+            class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-500"
+          >
+            <span data-i18n="hero_title_accent">Precisión & Control</span>
+          </span>
+        </h1>
+
+        <p
+          data-i18n="hero_subtitle"
+          class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-normal"
+        >
+          Diseño, cálculo e inspección rigurosa de sistemas de climatización
+          (HVAC), protección contra incendios, redes de gas y piping industrial.
+        </p>
+
+        <!-- Botones -->
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+        >
+          <a
+            href="#contacto"
+            data-i18n="hero_btn_primary"
+            class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-md border border-blue-500/30 transition-all text-sm"
+          >
+            Solicitar Evaluación de Proyecto
+          </a>
+          <a
+            href="#servicios"
+            data-i18n="hero_btn_secondary"
+            class="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-3.5 rounded-xl border border-white/15 backdrop-blur-sm transition-all text-sm"
+          >
+            Ver Especialidades
+          </a>
+        </div>
+
+        <!-- Métricas -->
+        <div
+          class="grid grid-cols-3 gap-4 max-w-2xl mx-auto border-t border-slate-800/80 pt-6"
+        >
+          <div>
+            <p class="text-xl sm:text-3xl font-black text-blue-400">+7</p>
+            <p
+              data-i18n="metric_exp"
+              class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1"
+            >
+              Años Exp.
+            </p>
+          </div>
+          <div>
+            <p class="text-xl sm:text-3xl font-black text-blue-400">100%</p>
+            <p
+              data-i18n="metric_norm"
+              class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1"
+            >
+              Norma NFPA
+            </p>
+          </div>
+          <div>
+            <p class="text-xl sm:text-3xl font-black text-blue-400">BIM</p>
+            <p
+              data-i18n="metric_cad"
+              class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1"
+            >
+              Modelado CAD
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICIOS PRINCIPALES ================= -->
+    <section
+      id="servicios"
+      class="py-16 md:py-24 bg-white border-y border-slate-200"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2
+            data-i18n="services_title"
+            class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-4"
+          >
+            Servicios Principales
+          </h2>
+          <p
+            data-i18n="services_subtitle"
+            class="text-slate-600 text-sm sm:text-base"
+          >
+            Especialidades técnicas con alcance detallado para cada tipo de
+            proyecto.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
+          >
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors"
+              >
+                <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+              </div>
+              <h3
+                data-i18n="srv1_title"
+                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors"
+              >
+                Consultoría e Inspección Técnica
+              </h3>
+              <p data-i18n="srv1_desc" class="text-slate-600 text-sm mb-6">
+                Diagnóstico especializado y auditoría técnica en campo para
+                instalaciones existentes o en fase de construcción.
+              </p>
+
+              <ul
+                class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-4"
+              >
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv1_item1"
+                    >Auditoría de instalaciones existentes</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv1_item2"
+                    >Verificación de cumplimiento normativo</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv1_item3"
+                    >Informes de peritaje y adecuación</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
+          >
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors"
+              >
+                <i data-lucide="drafting-compass" class="w-6 h-6"></i>
+              </div>
+              <h3
+                data-i18n="srv2_title"
+                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors"
+              >
+                Diseño y Cálculo de Ingeniería
+              </h3>
+              <p data-i18n="srv2_desc" class="text-slate-600 text-sm mb-6">
+                Desarrollo integral de proyectos mecánicos bajo estándares
+                internacionales NFPA y ASHRAE.
+              </p>
+
+              <ul
+                class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-4"
+              >
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv2_item1"
+                    >Sistemas de Climatización (HVAC)</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv2_item2"
+                    >Redes Contra Incendios y Rociadores</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv2_item3"
+                    >Trazado de Tuberías, Gas y Piping</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
+          >
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors"
+              >
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+              </div>
+              <h3
+                data-i18n="srv3_title"
+                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors"
+              >
+                Gestión y Calidad de Proyectos
+              </h3>
+              <p data-i18n="srv3_desc" class="text-slate-600 text-sm mb-6">
+                Supervisión de montaje y aseguramiento de calidad técnica para
+                garantizar ejecuciones sin errores.
+              </p>
+
+              <ul
+                class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-4"
+              >
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv3_item1"
+                    >Control de especificaciones de equipos</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv3_item2"
+                    >Supervisión de montaje e instalación</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="srv3_item3"
+                    >Aprobación de pruebas operativas (QA/QC)</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= METODOLOGÍA (SCROLL TIMELINE) ================= -->
+    <section id="metodologia" class="py-16 md:py-24 bg-slate-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16">
+          <h2
+            data-i18n="method_title"
+            class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-4"
+          >
+            Metodología de Trabajo
+          </h2>
+          <p
+            data-i18n="method_subtitle"
+            class="text-slate-600 text-sm sm:text-base"
+          >
+            Desplaza la página hacia abajo para seguir la progresión del
+            proyecto.
+          </p>
+        </div>
+
+        <div class="relative ml-4 sm:ml-32">
+          <div class="timeline-line-bg"></div>
+          <div id="timeline-progress" class="timeline-line-progress"></div>
+
+          <div class="space-y-16">
+            <div class="timeline-step relative pl-10 group">
+              <div class="timeline-node">1</div>
+              <h3
+                data-i18n="step1_title"
+                class="text-lg font-bold text-slate-900 mb-1"
+              >
+                1. Levantamiento y Diagnóstico
+              </h3>
+              <p
+                data-i18n="step1_desc"
+                class="text-slate-600 text-sm leading-relaxed"
+              >
+                Análisis técnico inicial en sitio o revisión de planos
+                arquitectónicos para definir el alcance del proyecto.
+              </p>
+            </div>
+
+            <div class="timeline-step relative pl-10 group">
+              <div class="timeline-node">2</div>
+              <h3
+                data-i18n="step2_title"
+                class="text-lg font-bold text-slate-900 mb-1"
+              >
+                2. Cálculo y Diseño de Ingeniería
+              </h3>
+              <p
+                data-i18n="step2_desc"
+                class="text-slate-600 text-sm leading-relaxed"
+              >
+                Dimensionamiento de cargas, modelado 3D de sistemas y desarrollo
+                de memorias descriptivas.
+              </p>
+            </div>
+
+            <div class="timeline-step relative pl-10 group">
+              <div class="timeline-node">3</div>
+              <h3
+                data-i18n="step3_title"
+                class="text-lg font-bold text-slate-900 mb-1"
+              >
+                3. Documentación y Permisología
+              </h3>
+              <p
+                data-i18n="step3_desc"
+                class="text-slate-600 text-sm leading-relaxed"
+              >
+                Elaboración de planos ejecutivos en CAD/BIM listos para
+                licitación y trámites regulatorios.
+              </p>
+            </div>
+
+            <div class="timeline-step relative pl-10 group">
+              <div class="timeline-node">4</div>
+              <h3
+                data-i18n="step4_title"
+                class="text-lg font-bold text-slate-900 mb-1"
+              >
+                4. Supervisión y Pruebas Operativas
+              </h3>
+              <p
+                data-i18n="step4_desc"
+                class="text-slate-600 text-sm leading-relaxed"
+              >
+                Acompañamiento en sitio durante la instalación y validación
+                final de funcionamiento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HERRAMIENTAS Y NORMATIVA (CARRUSEL INFINITO) ================= -->
+    <section
+      id="herramientas"
+      class="py-12 bg-white border-y border-slate-200 overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-6">
+        <p
+          data-i18n="tools_title"
+          class="text-xs font-bold uppercase tracking-widest text-slate-400"
+        >
+          Software de Modelado & Normativa Técnica Especializada
+        </p>
+      </div>
+
+      <!-- Contenedor del Carrusel Deslizante -->
+      <div
+        class="relative w-full overflow-hidden flex [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+      >
+        <!-- Track del Carrusel (Track Animado) -->
+        <div
+          class="flex gap-12 sm:gap-16 items-center whitespace-nowrap animate-infinite-scroll"
+        >
+          <!-- Grupo de Logos (Set 1) -->
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="layers" class="w-6 h-6 text-blue-600"></i> REVIT
+            2027
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="file-code-2" class="w-6 h-6 text-blue-600"></i>
+            AUTOCAD
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="flame" class="w-6 h-6 text-red-500"></i> NORMAS NFPA
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="wind" class="w-6 h-6 text-sky-500"></i> ASHRAE
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="cpu" class="w-6 h-6 text-slate-600"></i> ASME /
+            PIPING
+          </div>
+
+          <!-- Duplicado exacto para Bucle Infinito Sin Salto (Set 2) -->
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="layers" class="w-6 h-6 text-blue-600"></i> REVIT
+            2027
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="file-code-2" class="w-6 h-6 text-blue-600"></i>
+            AUTOCAD
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="flame" class="w-6 h-6 text-red-500"></i> NORMAS NFPA
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="wind" class="w-6 h-6 text-sky-500"></i> ASHRAE
+          </div>
+          <div
+            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
+          >
+            <i data-lucide="cpu" class="w-6 h-6 text-slate-600"></i> ASME /
+            PIPING
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LIDERAZGO TÉCNICO ================= -->
+    <section
+      id="nosotros"
+      class="py-16 md:py-24 bg-slate-900 text-white relative overflow-hidden"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+        <div class="text-center mb-12">
+          <span
+            data-i18n="lead_kicker"
+            class="text-xs font-bold uppercase tracking-widest text-blue-400"
+            >Dirección Técnica</span
+          >
+          <h2
+            data-i18n="lead_title"
+            class="text-2xl sm:text-4xl font-extrabold text-white mt-1"
+          >
+            Liderazgo de Proyectos
+          </h2>
+        </div>
+
+        <div
+          class="bg-white/10 border border-white/15 rounded-3xl p-6 sm:p-10 shadow-2xl flex flex-col md:flex-row items-center gap-8 backdrop-blur-md"
+        >
+          <div
+            class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border-2 border-white/20 flex-shrink-0 bg-slate-800"
+          >
+            <img
+              src="img\nene.jpg"
+              alt="Viktor Miquilena"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <div class="text-center md:text-left space-y-4">
+            <div>
+              <h3 class="text-2xl font-bold text-white">Viktor Miquilena</h3>
+              <p
+                data-i18n="lead_role"
+                class="text-blue-400 font-medium text-sm"
+              >
+                Ingeniero Mecánico | Consultor Principal en VGM
+              </p>
+            </div>
+
+            <p
+              data-i18n="lead_bio"
+              class="text-slate-300 text-sm leading-relaxed"
+            >
+              Ingeniero Mecánico con más de 7 años de experiencia especializado
+              en proyectos de climatización (HVAC), sistemas contra incendios,
+              redes de gas y piping industrial.
+            </p>
+
+            <div
+              class="flex flex-wrap gap-2 justify-center md:justify-start pt-2"
+            >
+              <span
+                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
+                >HVAC</span
+              >
+              <span
+                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
+                >Contra Incendios</span
+              >
+              <span
+                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
+                >Redes de Gas</span
+              >
+              <span
+                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
+                >Piping</span
+              >
+            </div>
+
+            <div class="pt-4">
+              <a
+                href="https://www.linkedin.com/in/viktorgmc210197/"
+                target="_blank"
+                class="inline-flex items-center gap-2 bg-[#0A66C2] hover:bg-[#084e96] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
+              >
+                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                <span data-i18n="lead_linkedin">Ver Perfil en LinkedIn</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PREGUNTAS FRECUENTES ================= -->
+    <section id="faq" class="py-16 md:py-24 bg-white border-b border-slate-200">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+          <h2
+            data-i18n="faq_title"
+            class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3"
+          >
+            Preguntas Frecuentes
+          </h2>
+          <p data-i18n="faq_subtitle" class="text-slate-600 text-sm">
+            Aclaraciones clave sobre la gestión y desarrollo de proyectos.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div
+            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
+          >
+            <button
+              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
+            >
+              <span data-i18n="faq_q1"
+                >¿En qué etapa del proyecto debo contactar a VGM?</span
+              >
+              <i
+                data-lucide="chevron-down"
+                class="w-5 h-5 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              data-i18n="faq_a1"
+              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
+            >
+              Idealmente desde el diseño conceptual para optimizar trazados.
+              También auditamos instalaciones en ejecución o ya operativas.
+            </div>
+          </div>
+
+          <div
+            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
+          >
+            <button
+              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
+            >
+              <span data-i18n="faq_q2"
+                >¿Qué entregables incluye un proyecto de ingeniería?</span
+              >
+              <i
+                data-lucide="chevron-down"
+                class="w-5 h-5 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              data-i18n="faq_a2"
+              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
+            >
+              Memoria descriptiva, de cálculo, cómputos métricos, planos
+              detallados en CAD/BIM y especificaciones técnicas de equipos.
+            </div>
+          </div>
+
+          <div
+            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
+          >
+            <button
+              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
+            >
+              <span data-i18n="faq_q3"
+                >¿Con qué software de modelado trabajan?</span
+              >
+              <i
+                data-lucide="chevron-down"
+                class="w-5 h-5 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              data-i18n="faq_a3"
+              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
+            >
+              Trabajamos con Autodesk Revit para modelado BIM en 3D y AutoCAD
+              para esquemas 2D, permitiendo la integración directa con
+              arquitectos e ingenieros civiles.
+            </div>
+          </div>
+
+          <div
+            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
+          >
+            <button
+              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
+            >
+              <span data-i18n="faq_q4"
+                >¿Los diseños facilitan los trámites de permisología?</span
+              >
+              <i
+                data-lucide="chevron-down"
+                class="w-5 h-5 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              data-i18n="faq_a4"
+              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
+            >
+              Sí, todos nuestros cálculos y esquemas técnicos se ajustan a
+              normativas internacionales (NFPA, ASHRAE) y regulaciones locales
+              para acelerar la aprobación institucional.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FORMULARIO DE CONTACTO ================= -->
+    <section
+      id="contacto"
+      class="py-16 md:py-24 bg-slate-900 text-white relative overflow-hidden"
+    >
+      <div class="max-w-xl mx-auto px-4 sm:px-6 relative z-10">
+        <div class="text-center mb-10">
+          <span
+            data-i18n="form_badge"
+            class="inline-block text-xs font-extrabold uppercase tracking-widest px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full mb-3 border border-blue-500/30"
+          >
+            Contacto Directo
+          </span>
+          <h2
+            data-i18n="form_title"
+            class="text-2xl sm:text-4xl font-extrabold text-white mb-3"
+          >
+            ¿Tienes un proyecto en mente?
+          </h2>
+          <p data-i18n="form_subtitle" class="text-slate-400 text-sm">
+            Déjanos tu mensaje y evaluaremos tus requerimientos de ingeniería.
+          </p>
+        </div>
+
+        <form
+          id="contact-form"
+          class="bg-slate-800/90 border border-blue-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl shadow-blue-900/20 backdrop-blur-md space-y-5"
+        >
+          <div>
+            <label
+              data-i18n="form_label_name"
+              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
+              >Nombre Completo</label
+            >
+            <input
+              type="text"
+              id="nombre"
+              required
+              placeholder="Ej: Carlos Mendoza"
+              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
+            />
+          </div>
+
+          <div>
+            <label
+              data-i18n="form_label_email"
+              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
+              >Correo Electrónico</label
+            >
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="carlos@empresa.com"
+              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
+            />
+          </div>
+
+          <div>
+            <label
+              data-i18n="form_label_service"
+              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
+              >Servicio Requerido</label
+            >
+            <select
+              id="servicio"
+              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
+            >
+              <option value="hvac">Climatización (HVAC)</option>
+              <option value="pci">Sistemas Contra Incendios (NFPA)</option>
+              <option value="gas">Redes de Gas y Piping</option>
+              <option value="auditoria">Auditoría / Inspección Técnica</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              data-i18n="form_label_msg"
+              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
+              >Detalles del Proyecto</label
+            >
+            <textarea
+              id="mensaje"
+              rows="4"
+              required
+              placeholder="Describe brevemente el alcance de la consulta..."
+              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            data-i18n="form_btn"
+            class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.01]"
+          >
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800/80"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800"
+        >
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <div
+                class="w-7 h-7 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center"
+              >
+                V
+              </div>
+              <span class="text-white font-extrabold tracking-tight text-lg"
+                >VGM Engineering</span
+              >
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Consultoría de ingeniería mecánica, climatización HVAC, redes de
+              incendios y piping industrial.
+            </p>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-bold uppercase tracking-wider text-white mb-3"
+            >
+              Navegación
+            </p>
+            <ul class="space-y-2 text-xs">
+              <li>
+                <a href="#servicios" class="hover:text-white transition-colors"
+                  >Servicios Principales</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#metodologia"
+                  class="hover:text-white transition-colors"
+                  >Metodología de Trabajo</a
+                >
+              </li>
+              <li>
+                <a href="#nosotros" class="hover:text-white transition-colors"
+                  >Liderazgo Técnico</a
+                >
+              </li>
+              <li>
+                <a href="#faq" class="hover:text-white transition-colors"
+                  >Preguntas Frecuentes</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p
+              class="text-xs font-bold uppercase tracking-wider text-white mb-3"
+            >
+              Contacto
+            </p>
+            <ul class="space-y-2 text-xs">
+              <li class="flex items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4 text-blue-500"></i>
+                <span>viktorgmc@gmail.com</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="linkedin" class="w-4 h-4 text-blue-500"></i>
+                <a
+                  href="https://www.linkedin.com/in/viktorgmc210197/"
+                  target="_blank"
+                  class="hover:text-white transition-colors"
+                  >LinkedIn / Viktor Miquilena</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500"
+        >
+          <p>
+            © 2026 VGM Engineering Consulting. Todos los derechos reservados.
+          </p>
+          <div class="flex gap-4">
+            <a href="#inicio" class="hover:text-slate-300">Volver arriba ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
