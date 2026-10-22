@@ -1,1057 +1,1452 @@
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth scroll-pt-20 motion-reduce:scroll-auto">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VGM Engineering & Consulting | Soluciones de Ingeniería</title>
 
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ============ SEO / SOCIAL ============ -->
+    <title data-i18n="meta_title">VGM Engineering & Consulting | Soluciones de Ingeniería</title>
+    <meta
+      name="description"
+      data-i18n="meta_desc"
+      content="Consultoría e ingeniería mecánica: climatización HVAC, protección contra incendios, redes de gas y piping industrial. Diseño, cálculo, inspección y supervisión con estándares NFPA y ASHRAE."
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="author" content="VGM Engineering & Consulting" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://vgm-engineering.com/" />
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VGM Engineering & Consulting" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" data-i18n="meta_title" content="VGM Engineering & Consulting | Soluciones de Ingeniería" />
+    <meta
+      property="og:description"
+      data-i18n="meta_desc"
+      content="Consultoría e ingeniería mecánica: climatización HVAC, protección contra incendios, redes de gas y piping industrial."
+    />
+    <meta property="og:url" content="https://vgm-engineering.com/" />
+    <meta property="og:image" content="https://vgm-engineering.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-    <!-- CSS Personalizado Externo -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" data-i18n="meta_title" content="VGM Engineering & Consulting" />
+    <meta name="twitter:description" data-i18n="meta_desc" content="Ingeniería mecánica de precisión y control." />
+    <meta name="twitter:image" content="https://vgm-engineering.com/og-image.jpg" />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="favicon.svg" />
+
+    <!-- ============ TIPOGRAFÍAS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND CSS (CDN pineado) ============ -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              display: ['"Space Grotesk"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+            },
+            boxShadow: {
+              glow: '0 0 0 1px rgb(37 99 235 / 0.25), 0 25px 60px -25px rgb(37 99 235 / 0.55)',
+              'glow-sm': '0 0 0 1px rgb(37 99 235 / 0.18), 0 12px 30px -14px rgb(37 99 235 / 0.45)',
+            },
+            keyframes: {
+              'infinite-scroll': {
+                from: { transform: 'translateX(0)' },
+                to: { transform: 'translateX(-50%)' },
+              },
+              'fade-up': {
+                from: { opacity: '0', transform: 'translateY(16px)' },
+                to: { opacity: '1', transform: 'translateY(0)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-8px)' },
+              },
+              dash: { to: { strokeDashoffset: '-160' } },
+              'ping-slow': {
+                '0%': { transform: 'scale(1)', opacity: '0.7' },
+                '80%, 100%': { transform: 'scale(2.6)', opacity: '0' },
+              },
+            },
+            animation: {
+              'infinite-scroll': 'infinite-scroll 32s linear infinite',
+              'fade-up': 'fade-up 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) both',
+              float: 'float 7s ease-in-out infinite',
+              dash: 'dash 2.4s linear infinite',
+              'ping-slow': 'ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite',
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- ============ ESTILOS PROPIOS ============ -->
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- ============ ICONOS ============ -->
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+
+    <!-- Marca la clase .js para animaciones progresivas (si el JS falla, el contenido sigue visible) -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
+
   <body
-    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white overflow-x-hidden"
+    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white overflow-x-hidden pb-[76px] lg:pb-0"
   >
-    <!-- ================= NAVBAR STICKY & DRAWER ================= -->
+    <!-- ============ SKIP LINK ============ -->
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-xl focus:bg-blue-600 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-xl"
+      >Saltar al contenido</a
+    >
+
+    <!-- ================= NAVBAR STICKY ================= -->
     <header
-      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300"
+      id="site-header"
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
+        <div class="flex items-center justify-between h-16 gap-4">
           <!-- Logo -->
-          <a href="#inicio" class="flex items-center gap-2 group">
-            <div
-              class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform"
+          <a href="#inicio" class="flex items-center gap-2.5 group shrink-0">
+            <span
+              class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 shadow-lg shadow-blue-600/25 transition-transform duration-300 group-hover:scale-105"
             >
-              V
-            </div>
-            <span class="font-extrabold text-xl tracking-tight text-slate-900"
-              >VGM</span
-            >
+              <svg
+                viewBox="0 0 24 24"
+                class="h-5 w-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 5l8 14 8-14" />
+              </svg>
+            </span>
+            <span class="flex flex-col leading-none">
+              <span class="font-display font-extrabold text-xl tracking-tight text-slate-900">VGM</span>
+              <span
+                class="font-mono text-[9px] uppercase tracking-[0.18em] text-slate-500"
+                >Engineering</span
+              >
+            </span>
           </a>
 
           <!-- Menu Desktop -->
-          <nav
-            class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600"
-          >
-            <a
-              href="#inicio"
-              data-i18n="nav_start"
-              class="hover:text-blue-600 transition-colors"
-              >Inicio</a
-            >
-            <a
-              href="#servicios"
-              data-i18n="nav_services"
-              class="hover:text-blue-600 transition-colors"
-              >Servicios</a
-            >
-            <a
-              href="#metodologia"
-              data-i18n="nav_methodology"
-              class="hover:text-blue-600 transition-colors"
-              >Metodología</a
-            >
-            <a
-              href="#herramientas"
-              data-i18n="nav_tools"
-              class="hover:text-blue-600 transition-colors"
-              >Herramientas</a
-            >
-            <a
-              href="#nosotros"
-              data-i18n="nav_leadership"
-              class="hover:text-blue-600 transition-colors"
-              >Liderazgo</a
-            >
-            <a
-              href="#faq"
-              data-i18n="nav_faq"
-              class="hover:text-blue-600 transition-colors"
-              >FAQ</a
-            >
+          <nav class="hidden lg:flex items-center gap-6 font-medium text-sm text-slate-600">
+            <a href="#inicio" data-i18n="nav_start" class="nav-link transition-colors hover:text-blue-600">Inicio</a>
+            <a href="#servicios" data-i18n="nav_services" class="nav-link transition-colors hover:text-blue-600">Servicios</a>
+            <a href="#proyectos" data-i18n="nav_projects" class="nav-link transition-colors hover:text-blue-600">Proyectos</a>
+            <a href="#metodologia" data-i18n="nav_methodology" class="nav-link transition-colors hover:text-blue-600">Metodología</a>
+            <a href="#herramientas" data-i18n="nav_tools" class="nav-link transition-colors hover:text-blue-600">Herramientas</a>
+            <a href="#nosotros" data-i18n="nav_leadership" class="nav-link transition-colors hover:text-blue-600">Liderazgo</a>
+            <a href="#faq" data-i18n="nav_faq" class="nav-link transition-colors hover:text-blue-600">FAQ</a>
           </nav>
 
           <!-- Actions Desktop -->
-          <div class="hidden md:flex items-center gap-4">
+          <div class="hidden lg:flex items-center gap-3">
             <button
               id="lang-toggle"
-              class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-300 hover:border-blue-600 text-slate-700 hover:text-blue-600 transition-all"
+              type="button"
+              data-i18n-aria-label="lang_switch"
+              aria-label="Cambiar a inglés"
+              class="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg border border-slate-300 hover:border-blue-600 text-slate-700 hover:text-blue-600 transition-all min-h-[40px]"
             >
-              <i data-lucide="globe" class="w-4 h-4"></i>
-              <span id="lang-label">ES / EN</span>
+              <i data-lucide="globe" class="w-4 h-4" aria-hidden="true"></i>
+              <span class="flex items-center gap-1">
+                <span class="lang-opt" data-lang="es">ES</span>
+                <span class="text-slate-300" aria-hidden="true">/</span>
+                <span class="lang-opt" data-lang="en">EN</span>
+              </span>
             </button>
 
             <a
               href="#contacto"
               data-i18n="cta_consulting"
-              class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition-all hover:-translate-y-0.5"
+              class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-blue-600/20 transition-all hover:-translate-y-0.5 min-h-[42px] inline-flex items-center"
+              >Solicitar Consultoría</a
             >
-              Solicitar Consultoría
-            </a>
           </div>
 
           <!-- Controls Mobile -->
-          <div class="flex items-center gap-2 md:hidden">
+          <div class="flex items-center gap-2 lg:hidden">
             <button
               id="lang-toggle-mobile"
-              class="p-2 text-xs font-bold text-slate-700 border border-slate-200 rounded-lg"
+              type="button"
+              data-i18n-aria-label="lang_switch"
+              aria-label="Cambiar a inglés"
+              class="px-2.5 py-2 text-xs font-bold text-slate-700 border border-slate-200 rounded-lg min-h-[40px] min-w-[52px]"
             >
-              ES/EN
+              <span class="lang-opt" data-lang="es">ES</span
+              ><span class="text-slate-300" aria-hidden="true">/</span
+              ><span class="lang-opt" data-lang="en">EN</span>
             </button>
             <button
               id="menu-btn"
               type="button"
-              class="p-2 text-slate-600 hover:text-blue-600 rounded-lg"
+              aria-label="Abrir menú de navegación"
+              aria-expanded="false"
+              aria-controls="drawer-menu"
+              class="p-2.5 text-slate-600 hover:text-blue-600 rounded-lg min-h-[44px] min-w-[44px] grid place-items-center transition-colors"
             >
-              <i data-lucide="menu" class="w-6 h-6"></i>
+              <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
             </button>
           </div>
         </div>
       </div>
+
+      <!-- Barra de progreso de lectura -->
+      <div
+        id="scroll-progress"
+        class="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500"
+        aria-hidden="true"
+      ></div>
     </header>
 
-    <!-- MENÚ DESPLEGABLE LATERAL (DRAWER MÓVIL) -->
+    <!-- ================= MENÚ DESPLEGABLE LATERAL (DRAWER MÓVIL) ================= -->
     <div
       id="drawer-backdrop"
-      class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300"
+      class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300"
+      aria-hidden="true"
     ></div>
     <aside
       id="drawer-menu"
-      class="fixed top-0 right-0 z-50 w-72 h-full bg-white shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="drawer-title"
+      class="fixed top-0 right-0 z-[70] w-[85%] max-w-xs h-full bg-white shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto"
     >
       <div>
-        <div
-          class="flex items-center justify-between pb-6 mb-6 border-b border-slate-100"
-        >
-          <span class="font-bold text-lg text-slate-900">Menú</span>
+        <div class="flex items-center justify-between pb-6 mb-6 border-b border-slate-100">
+          <span id="drawer-title" class="font-display font-bold text-lg text-slate-900" data-i18n="drawer_title">Menú</span>
           <button
             id="drawer-close"
-            class="p-2 text-slate-500 hover:text-slate-800 rounded-lg"
+            type="button"
+            class="p-2.5 text-slate-500 hover:text-slate-800 rounded-lg grid place-items-center min-h-[44px] min-w-[44px]"
+            aria-label="Cerrar menú"
           >
-            <i data-lucide="x" class="w-6 h-6"></i>
+            <i data-lucide="x" class="w-6 h-6" aria-hidden="true"></i>
           </button>
         </div>
 
-        <nav class="space-y-4 font-medium text-slate-700">
-          <a
-            href="#inicio"
-            data-i18n="nav_start"
-            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >Inicio</a
-          >
-          <a
-            href="#servicios"
-            data-i18n="nav_services"
-            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >Servicios</a
-          >
-          <a
-            href="#metodologia"
-            data-i18n="nav_methodology"
-            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >Metodología</a
-          >
-          <a
-            href="#herramientas"
-            data-i18n="nav_tools"
-            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >Herramientas</a
-          >
-          <a
-            href="#nosotros"
-            data-i18n="nav_leadership"
-            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >Liderazgo</a
-          >
-          <a
-            href="#faq"
-            data-i18n="nav_faq"
-            class="mobile-link block py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
-            >FAQ</a
-          >
+        <nav class="space-y-1 font-medium text-slate-700">
+          <a href="#inicio" data-i18n="nav_start" class="mobile-link block py-3 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">Inicio</a>
+          <a href="#servicios" data-i18n="nav_services" class="mobile-link block py-3 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">Servicios</a>
+          <a href="#proyectos" data-i18n="nav_projects" class="mobile-link block py-3 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">Proyectos</a>
+          <a href="#metodologia" data-i18n="nav_methodology" class="mobile-link block py-3 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">Metodología</a>
+          <a href="#herramientas" data-i18n="nav_tools" class="mobile-link block py-3 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">Herramientas</a>
+          <a href="#nosotros" data-i18n="nav_leadership" class="mobile-link block py-3 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">Liderazgo</a>
+          <a href="#faq" data-i18n="nav_faq" class="mobile-link block py-3 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors">FAQ</a>
         </nav>
       </div>
 
-      <div class="pt-6 border-t border-slate-100">
+      <div class="pt-6 border-t border-slate-100 space-y-3">
         <a
           href="#contacto"
           data-i18n="cta_consulting"
-          class="mobile-link block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition-all"
+          class="mobile-link block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl shadow-md shadow-blue-600/20 transition-all"
+          >Solicitar Consultoría</a
         >
-          Solicitar Consultoría
-        </a>
+        <a
+          href="mailto:viktorgmc@gmail.com"
+          class="mobile-link block w-full text-center border border-slate-200 text-slate-700 font-semibold py-3.5 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-colors"
+          >viktorgmc@gmail.com</a
+        >
       </div>
     </aside>
 
-    <!-- ================= HERO SECTION ================= -->
-    <section
-      id="inicio"
-      class="relative pt-8 pb-16 md:pt-20 md:pb-28 overflow-hidden bg-slate-900 text-white"
-    >
-      <div class="hero-glow-1"></div>
-      <div class="hero-glow-2"></div>
-
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
-        <!-- Mini Banner / Badge -->
+    <main id="contenido">
+      <!-- ================= HERO SECTION ================= -->
+      <section id="inicio" class="relative pt-10 pb-16 md:pt-16 md:pb-24 overflow-hidden bg-slate-900 text-white">
+        <!-- Fondo -->
         <div
-          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 font-medium text-xs uppercase tracking-widest mb-4 backdrop-blur-md"
-        >
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span data-i18n="hero_badge"
-            >Consultoría & Ingeniería de Alta Exigencia</span
-          >
-        </div>
-
-        <!-- Titular Principal -->
-        <h1
-          class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6"
-        >
-          <span data-i18n="hero_title_1">Ingeniería Mecánica de</span>
-          <span
-            class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-500"
-          >
-            <span data-i18n="hero_title_accent">Precisión & Control</span>
-          </span>
-        </h1>
-
-        <p
-          data-i18n="hero_subtitle"
-          class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-normal"
-        >
-          Diseño, cálculo e inspección rigurosa de sistemas de climatización
-          (HVAC), protección contra incendios, redes de gas y piping industrial.
-        </p>
-
-        <!-- Botones -->
+          class="pointer-events-none absolute -top-[140px] left-1/2 h-[420px] w-[680px] -translate-x-1/2 bg-[radial-gradient(circle,rgba(37,99,235,0.28)_0%,rgba(15,23,42,0)_70%)] blur-[90px]"
+          aria-hidden="true"
+        ></div>
         <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-        >
-          <a
-            href="#contacto"
-            data-i18n="hero_btn_primary"
-            class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-md border border-blue-500/30 transition-all text-sm"
-          >
-            Solicitar Evaluación de Proyecto
-          </a>
-          <a
-            href="#servicios"
-            data-i18n="hero_btn_secondary"
-            class="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-3.5 rounded-xl border border-white/15 backdrop-blur-sm transition-all text-sm"
-          >
-            Ver Especialidades
-          </a>
-        </div>
-
-        <!-- Métricas -->
+          class="pointer-events-none absolute -bottom-[80px] right-[6%] h-[340px] w-[440px] bg-[radial-gradient(circle,rgba(34,211,238,0.16)_0%,rgba(15,23,42,0)_70%)] blur-[100px]"
+          aria-hidden="true"
+        ></div>
         <div
-          class="grid grid-cols-3 gap-4 max-w-2xl mx-auto border-t border-slate-800/80 pt-6"
-        >
-          <div>
-            <p class="text-xl sm:text-3xl font-black text-blue-400">+7</p>
-            <p
-              data-i18n="metric_exp"
-              class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1"
-            >
-              Años Exp.
-            </p>
-          </div>
-          <div>
-            <p class="text-xl sm:text-3xl font-black text-blue-400">100%</p>
-            <p
-              data-i18n="metric_norm"
-              class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1"
-            >
-              Norma NFPA
-            </p>
-          </div>
-          <div>
-            <p class="text-xl sm:text-3xl font-black text-blue-400">BIM</p>
-            <p
-              data-i18n="metric_cad"
-              class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1"
-            >
-              Modelado CAD
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+          class="pointer-events-none absolute inset-0 opacity-[0.35]"
+          style="
+            background-image:
+              linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 35%, transparent 75%);
+          "
+          aria-hidden="true"
+        ></div>
 
-    <!-- ================= SERVICIOS PRINCIPALES ================= -->
-    <section
-      id="servicios"
-      class="py-16 md:py-24 bg-white border-y border-slate-200"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2
-            data-i18n="services_title"
-            class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-4"
-          >
-            Servicios Principales
-          </h2>
-          <p
-            data-i18n="services_subtitle"
-            class="text-slate-600 text-sm sm:text-base"
-          >
-            Especialidades técnicas con alcance detallado para cada tipo de
-            proyecto.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Card 1 -->
-          <div
-            class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
-          >
-            <div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-14 items-center">
+            <!-- ===== Columna de texto ===== -->
+            <div class="text-center lg:text-left">
+              <!-- Badge -->
               <div
-                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors"
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 font-medium text-xs uppercase tracking-widest mb-6 backdrop-blur-md"
               >
-                <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+                <span class="relative flex h-2 w-2">
+                  <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 animate-ping-slow motion-reduce:animate-none"></span>
+                  <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                </span>
+                <span data-i18n="hero_badge">Consultoría &amp; Ingeniería de Alta Exigencia</span>
               </div>
-              <h3
-                data-i18n="srv1_title"
-                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors"
+
+              <!-- Titular -->
+              <h1 class="font-display text-[2.1rem] sm:text-5xl lg:text-[3.1rem] xl:text-[3.65rem] font-bold tracking-tight leading-[1.08] mb-6">
+                <span data-i18n="hero_title_1">Ingeniería Mecánica de</span>
+                <span
+                  class="block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500"
+                >
+                  <span data-i18n="hero_title_accent">Precisión &amp; Control</span>
+                </span>
+              </h1>
+
+              <p
+                data-i18n="hero_subtitle"
+                class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-7"
               >
+                Diseño, cálculo e inspección rigurosa de sistemas de climatización (HVAC), protección contra
+                incendios, redes de gas y piping industrial.
+              </p>
+
+              <!-- Señales de confianza -->
+              <ul
+                class="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 mb-8 text-xs sm:text-sm text-slate-300"
+              >
+                <li class="flex items-center gap-1.5">
+                  <i data-lucide="clock" class="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true"></i>
+                  <span data-i18n="hero_trust_1">Respuesta en menos de 24 h</span>
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true"></i>
+                  <span data-i18n="hero_trust_2">Inspección en sitio · LATAM</span>
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i data-lucide="file-check-2" class="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true"></i>
+                  <span data-i18n="hero_trust_3">Entregables listos para permisología</span>
+                </li>
+              </ul>
+
+              <!-- Botones -->
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 mb-10">
+                <a
+                  href="#contacto"
+                  data-i18n="hero_btn_primary"
+                  class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg shadow-blue-600/25 border border-blue-500/30 transition-all hover:-translate-y-0.5 text-sm inline-flex items-center justify-center gap-2"
+                >
+                  <span>Solicitar Evaluación de Proyecto</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+                </a>
+                <a
+                  href="#servicios"
+                  data-i18n="hero_btn_secondary"
+                  class="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-semibold px-7 py-3.5 rounded-xl border border-white/20 backdrop-blur-sm transition-all text-sm inline-flex items-center justify-center gap-2"
+                >
+                  <span>Ver Especialidades</span>
+                </a>
+              </div>
+
+              <!-- Métricas -->
+              <div class="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto lg:mx-0 border-t border-slate-800 pt-6">
+                <div>
+                  <p class="font-display text-2xl sm:text-3xl font-bold text-blue-400">+7</p>
+                  <p data-i18n="metric_exp" class="text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1">Años Exp.</p>
+                </div>
+                <div>
+                  <p class="font-display text-2xl sm:text-3xl font-bold text-blue-400">100%</p>
+                  <p data-i18n="metric_norm" class="text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1">Norma NFPA</p>
+                </div>
+                <div>
+                  <p class="font-display text-2xl sm:text-3xl font-bold text-blue-400">BIM</p>
+                  <p data-i18n="metric_cad" class="text-[11px] sm:text-xs text-slate-400 uppercase tracking-wider mt-1">Modelado CAD</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Columna visual: plano técnico ===== -->
+            <div class="relative hidden lg:block" aria-hidden="true">
+              <div
+                class="relative rounded-3xl border border-white/10 bg-slate-800/40 backdrop-blur-sm shadow-2xl shadow-blue-950/50 p-6 animate-float motion-reduce:animate-none"
+              >
+                <svg viewBox="0 0 520 400" class="w-full h-auto" fill="none">
+                  <defs>
+                    <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
+                      <path d="M26 0H0v26" stroke="rgb(148 163 184 / 0.13)" stroke-width="1" />
+                    </pattern>
+                    <linearGradient id="duct" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0" stop-color="#3b82f6" />
+                      <stop offset="1" stop-color="#22d3ee" />
+                    </linearGradient>
+                    <linearGradient id="pipe" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0" stop-color="#38bdf8" />
+                      <stop offset="1" stop-color="#818cf8" />
+                    </linearGradient>
+                  </defs>
+
+                  <rect x="0" y="0" width="520" height="400" rx="20" fill="url(#grid)" />
+
+                  <!-- Ducto principal -->
+                  <path d="M40 96h250a26 26 0 0 1 26 26v34" stroke="url(#duct)" stroke-width="16" stroke-linecap="round" opacity="0.9" />
+                  <path d="M40 96h250a26 26 0 0 1 26 26v34" stroke="#e0f2fe" stroke-width="2" stroke-dasharray="10 150" class="animate-dash" />
+
+                  <!-- Ramal de rociadores -->
+                  <path d="M150 96v86" stroke="#f87171" stroke-width="6" stroke-linecap="round" opacity="0.85" />
+                  <path d="M150 182v58" stroke="#f87171" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 10" />
+                  <circle cx="150" cy="246" r="9" fill="#0f172a" stroke="#f87171" stroke-width="3" />
+                  <circle cx="150" cy="246" r="20" stroke="#f87171" stroke-width="1.5" opacity="0.45" />
+
+                  <!-- Tubería industrial -->
+                  <path d="M60 320h250a22 22 0 0 0 22-22v-58" stroke="url(#pipe)" stroke-width="12" stroke-linecap="round" opacity="0.85" />
+                  <path d="M60 320h250a22 22 0 0 0 22-22v-58" stroke="#e0f2fe" stroke-width="1.6" stroke-dasharray="8 120" class="animate-dash" />
+                  <line x1="150" y1="309" x2="150" y2="331" stroke="#818cf8" stroke-width="4" />
+                  <line x1="230" y1="309" x2="230" y2="331" stroke="#818cf8" stroke-width="4" />
+
+                  <!-- Cotas -->
+                  <g stroke="rgb(148 163 184 / 0.55)" stroke-width="1">
+                    <line x1="40" y1="58" x2="316" y2="58" />
+                    <line x1="40" y1="50" x2="40" y2="66" />
+                    <line x1="316" y1="50" x2="316" y2="66" />
+                  </g>
+                  <text x="178" y="48" fill="rgb(203 213 225)" font-size="13" font-family="JetBrains Mono, monospace">Ø 150 mm</text>
+
+                  <!-- Etiquetas -->
+                  <g font-family="JetBrains Mono, monospace" font-size="12">
+                    <rect x="352" y="80" width="118" height="26" rx="7" fill="rgb(37 99 235 / 0.18)" stroke="rgb(96 165 250 / 0.5)" />
+                    <text x="362" y="98" fill="#bfdbfe">HVAC-01</text>
+
+                    <rect x="352" y="232" width="118" height="26" rx="7" fill="rgb(248 113 113 / 0.16)" stroke="rgb(248 113 113 / 0.45)" />
+                    <text x="362" y="250" fill="#fecaca">NFPA 13</text>
+
+                    <rect x="352" y="286" width="118" height="26" rx="7" fill="rgb(129 140 248 / 0.16)" stroke="rgb(129 140 248 / 0.45)" />
+                    <text x="362" y="304" fill="#c7d2fe">ASME B31</text>
+                  </g>
+                  <g stroke="rgb(148 163 184 / 0.5)" stroke-width="1" stroke-dasharray="3 4">
+                    <line x1="316" y1="96" x2="348" y2="93" />
+                    <line x1="332" y1="240" x2="348" y2="245" />
+                    <line x1="332" y1="270" x2="348" y2="299" />
+                  </g>
+                </svg>
+
+                <!-- Chips flotantes -->
+                <div
+                  class="absolute -left-4 top-8 flex items-center gap-2 rounded-xl bg-slate-900/90 border border-white/10 px-3 py-2 text-xs font-semibold text-slate-200 shadow-xl"
+                >
+                  <i data-lucide="boxes" class="w-4 h-4 text-cyan-400" aria-hidden="true"></i>
+                  <span>Revit · BIM</span>
+                </div>
+                <div
+                  class="absolute -right-3 bottom-10 flex items-center gap-2 rounded-xl bg-slate-900/90 border border-white/10 px-3 py-2 text-xs font-semibold text-slate-200 shadow-xl"
+                >
+                  <i data-lucide="gauge" class="w-4 h-4 text-blue-400" aria-hidden="true"></i>
+                  <span class="font-mono">ΔP 12 Pa</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SERVICIOS PRINCIPALES ================= -->
+      <section id="servicios" class="py-16 md:py-24 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-600 mb-3" data-i18n="services_kicker">Áreas de especialidad</span>
+            <h2 data-i18n="services_title" class="font-display text-[1.75rem] sm:text-4xl font-bold text-slate-900 mb-4">
+              Servicios Principales
+            </h2>
+            <p data-i18n="services_subtitle" class="text-slate-600 text-sm sm:text-base">
+              Especialidades técnicas con alcance detallado para cada tipo de proyecto.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+            <!-- Card 1 -->
+            <article
+              class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-7 lg:p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col"
+              data-reveal
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div
+                  class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300"
+                >
+                  <i data-lucide="clipboard-check" class="w-6 h-6" aria-hidden="true"></i>
+                </div>
+                <span class="font-mono text-xs text-slate-300 group-hover:text-blue-300 transition-colors">01</span>
+              </div>
+              <h3 data-i18n="srv1_title" class="font-display text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                 Consultoría e Inspección Técnica
               </h3>
               <p data-i18n="srv1_desc" class="text-slate-600 text-sm mb-6">
-                Diagnóstico especializado y auditoría técnica en campo para
-                instalaciones existentes o en fase de construcción.
+                Diagnóstico especializado y auditoría técnica en campo para instalaciones existentes o en fase de
+                construcción.
               </p>
-
-              <ul
-                class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-4"
-              >
+              <ul class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-5 flex-1">
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv1_item1"
-                    >Auditoría de instalaciones existentes</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv1_item1">Auditoría de instalaciones existentes</span>
                 </li>
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv1_item2"
-                    >Verificación de cumplimiento normativo</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv1_item2">Verificación de cumplimiento normativo</span>
                 </li>
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv1_item3"
-                    >Informes de peritaje y adecuación</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv1_item3">Informes de peritaje y adecuación</span>
                 </li>
               </ul>
-            </div>
-          </div>
+              <a
+                href="#contacto"
+                class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-semibold text-blue-600 hover:text-blue-700 group-hover:text-blue-600 transition-colors"
+              >
+                <span data-i18n="srv_cta">Solicitar cotización</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
+              </a>
+            </article>
 
-          <!-- Card 2 -->
-          <div
-            class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
-          >
-            <div>
-              <div
-                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors"
-              >
-                <i data-lucide="drafting-compass" class="w-6 h-6"></i>
+            <!-- Card 2 -->
+            <article
+              class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-7 lg:p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col"
+              data-reveal
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div
+                  class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300"
+                >
+                  <i data-lucide="drafting-compass" class="w-6 h-6" aria-hidden="true"></i>
+                </div>
+                <span class="font-mono text-xs text-slate-300 group-hover:text-blue-300 transition-colors">02</span>
               </div>
-              <h3
-                data-i18n="srv2_title"
-                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors"
-              >
+              <h3 data-i18n="srv2_title" class="font-display text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                 Diseño y Cálculo de Ingeniería
               </h3>
               <p data-i18n="srv2_desc" class="text-slate-600 text-sm mb-6">
-                Desarrollo integral de proyectos mecánicos bajo estándares
-                internacionales NFPA y ASHRAE.
+                Desarrollo integral de proyectos mecánicos bajo estándares internacionales NFPA y ASHRAE.
               </p>
-
-              <ul
-                class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-4"
-              >
+              <ul class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-5 flex-1">
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv2_item1"
-                    >Sistemas de Climatización (HVAC)</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv2_item1">Sistemas de Climatización (HVAC)</span>
                 </li>
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv2_item2"
-                    >Redes Contra Incendios y Rociadores</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv2_item2">Redes Contra Incendios y Rociadores</span>
                 </li>
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv2_item3"
-                    >Trazado de Tuberías, Gas y Piping</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv2_item3">Trazado de Tuberías, Gas y Piping</span>
                 </li>
               </ul>
-            </div>
-          </div>
+              <a
+                href="#contacto"
+                class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-semibold text-blue-600 hover:text-blue-700 group-hover:text-blue-600 transition-colors"
+              >
+                <span data-i18n="srv_cta">Solicitar cotización</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
+              </a>
+            </article>
 
-          <!-- Card 3 -->
-          <div
-            class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
-          >
-            <div>
-              <div
-                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors"
-              >
-                <i data-lucide="shield-check" class="w-6 h-6"></i>
+            <!-- Card 3 -->
+            <article
+              class="service-card group bg-slate-50 border border-slate-200/80 rounded-2xl p-7 lg:p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col"
+              data-reveal
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div
+                  class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300"
+                >
+                  <i data-lucide="shield-check" class="w-6 h-6" aria-hidden="true"></i>
+                </div>
+                <span class="font-mono text-xs text-slate-300 group-hover:text-blue-300 transition-colors">03</span>
               </div>
-              <h3
-                data-i18n="srv3_title"
-                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors"
-              >
+              <h3 data-i18n="srv3_title" class="font-display text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                 Gestión y Calidad de Proyectos
               </h3>
               <p data-i18n="srv3_desc" class="text-slate-600 text-sm mb-6">
-                Supervisión de montaje y aseguramiento de calidad técnica para
-                garantizar ejecuciones sin errores.
+                Supervisión de montaje y aseguramiento de calidad técnica para garantizar ejecuciones sin errores.
               </p>
-
-              <ul
-                class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-4"
-              >
+              <ul class="space-y-3 mb-6 text-sm text-slate-700 border-t border-slate-200/80 pt-5 flex-1">
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv3_item1"
-                    >Control de especificaciones de equipos</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv3_item1">Control de especificaciones de equipos</span>
                 </li>
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv3_item2"
-                    >Supervisión de montaje e instalación</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv3_item2">Supervisión de montaje e instalación</span>
                 </li>
                 <li class="flex items-start gap-2.5">
-                  <i
-                    data-lucide="check-circle-2"
-                    class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5"
-                  ></i>
-                  <span data-i18n="srv3_item3"
-                    >Aprobación de pruebas operativas (QA/QC)</span
-                  >
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                  <span data-i18n="srv3_item3">Aprobación de pruebas operativas (QA/QC)</span>
                 </li>
               </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= METODOLOGÍA (SCROLL TIMELINE) ================= -->
-    <section id="metodologia" class="py-16 md:py-24 bg-slate-50">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-16">
-          <h2
-            data-i18n="method_title"
-            class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-4"
-          >
-            Metodología de Trabajo
-          </h2>
-          <p
-            data-i18n="method_subtitle"
-            class="text-slate-600 text-sm sm:text-base"
-          >
-            Desplaza la página hacia abajo para seguir la progresión del
-            proyecto.
-          </p>
-        </div>
-
-        <div class="relative ml-4 sm:ml-32">
-          <div class="timeline-line-bg"></div>
-          <div id="timeline-progress" class="timeline-line-progress"></div>
-
-          <div class="space-y-16">
-            <div class="timeline-step relative pl-10 group">
-              <div class="timeline-node">1</div>
-              <h3
-                data-i18n="step1_title"
-                class="text-lg font-bold text-slate-900 mb-1"
-              >
-                1. Levantamiento y Diagnóstico
-              </h3>
-              <p
-                data-i18n="step1_desc"
-                class="text-slate-600 text-sm leading-relaxed"
-              >
-                Análisis técnico inicial en sitio o revisión de planos
-                arquitectónicos para definir el alcance del proyecto.
-              </p>
-            </div>
-
-            <div class="timeline-step relative pl-10 group">
-              <div class="timeline-node">2</div>
-              <h3
-                data-i18n="step2_title"
-                class="text-lg font-bold text-slate-900 mb-1"
-              >
-                2. Cálculo y Diseño de Ingeniería
-              </h3>
-              <p
-                data-i18n="step2_desc"
-                class="text-slate-600 text-sm leading-relaxed"
-              >
-                Dimensionamiento de cargas, modelado 3D de sistemas y desarrollo
-                de memorias descriptivas.
-              </p>
-            </div>
-
-            <div class="timeline-step relative pl-10 group">
-              <div class="timeline-node">3</div>
-              <h3
-                data-i18n="step3_title"
-                class="text-lg font-bold text-slate-900 mb-1"
-              >
-                3. Documentación y Permisología
-              </h3>
-              <p
-                data-i18n="step3_desc"
-                class="text-slate-600 text-sm leading-relaxed"
-              >
-                Elaboración de planos ejecutivos en CAD/BIM listos para
-                licitación y trámites regulatorios.
-              </p>
-            </div>
-
-            <div class="timeline-step relative pl-10 group">
-              <div class="timeline-node">4</div>
-              <h3
-                data-i18n="step4_title"
-                class="text-lg font-bold text-slate-900 mb-1"
-              >
-                4. Supervisión y Pruebas Operativas
-              </h3>
-              <p
-                data-i18n="step4_desc"
-                class="text-slate-600 text-sm leading-relaxed"
-              >
-                Acompañamiento en sitio durante la instalación y validación
-                final de funcionamiento.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= HERRAMIENTAS Y NORMATIVA (CARRUSEL INFINITO) ================= -->
-    <section
-      id="herramientas"
-      class="py-12 bg-white border-y border-slate-200 overflow-hidden"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-6">
-        <p
-          data-i18n="tools_title"
-          class="text-xs font-bold uppercase tracking-widest text-slate-400"
-        >
-          Software de Modelado & Normativa Técnica Especializada
-        </p>
-      </div>
-
-      <!-- Contenedor del Carrusel Deslizante -->
-      <div
-        class="relative w-full overflow-hidden flex [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
-      >
-        <!-- Track del Carrusel (Track Animado) -->
-        <div
-          class="flex gap-12 sm:gap-16 items-center whitespace-nowrap animate-infinite-scroll"
-        >
-          <!-- Grupo de Logos (Set 1) -->
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="layers" class="w-6 h-6 text-blue-600"></i> REVIT
-            2027
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="file-code-2" class="w-6 h-6 text-blue-600"></i>
-            AUTOCAD
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="flame" class="w-6 h-6 text-red-500"></i> NORMAS NFPA
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="wind" class="w-6 h-6 text-sky-500"></i> ASHRAE
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="cpu" class="w-6 h-6 text-slate-600"></i> ASME /
-            PIPING
-          </div>
-
-          <!-- Duplicado exacto para Bucle Infinito Sin Salto (Set 2) -->
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="layers" class="w-6 h-6 text-blue-600"></i> REVIT
-            2027
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="file-code-2" class="w-6 h-6 text-blue-600"></i>
-            AUTOCAD
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="flame" class="w-6 h-6 text-red-500"></i> NORMAS NFPA
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="wind" class="w-6 h-6 text-sky-500"></i> ASHRAE
-          </div>
-          <div
-            class="flex items-center gap-2 font-black text-slate-700 text-lg sm:text-xl tracking-tight"
-          >
-            <i data-lucide="cpu" class="w-6 h-6 text-slate-600"></i> ASME /
-            PIPING
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= LIDERAZGO TÉCNICO ================= -->
-    <section
-      id="nosotros"
-      class="py-16 md:py-24 bg-slate-900 text-white relative overflow-hidden"
-    >
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-        <div class="text-center mb-12">
-          <span
-            data-i18n="lead_kicker"
-            class="text-xs font-bold uppercase tracking-widest text-blue-400"
-            >Dirección Técnica</span
-          >
-          <h2
-            data-i18n="lead_title"
-            class="text-2xl sm:text-4xl font-extrabold text-white mt-1"
-          >
-            Liderazgo de Proyectos
-          </h2>
-        </div>
-
-        <div
-          class="bg-white/10 border border-white/15 rounded-3xl p-6 sm:p-10 shadow-2xl flex flex-col md:flex-row items-center gap-8 backdrop-blur-md"
-        >
-          <div
-            class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border-2 border-white/20 flex-shrink-0 bg-slate-800"
-          >
-            <img
-              src="img\vgm.jpg"
-              alt="Viktor Miquilena"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <div class="text-center md:text-left space-y-4">
-            <div>
-              <h3 class="text-2xl font-bold text-white">Viktor Miquilena</h3>
-              <p
-                data-i18n="lead_role"
-                class="text-blue-400 font-medium text-sm"
-              >
-                Ingeniero Mecánico | Consultor Principal en VGM
-              </p>
-            </div>
-
-            <p
-              data-i18n="lead_bio"
-              class="text-slate-300 text-sm leading-relaxed"
-            >
-              Ingeniero Mecánico con más de 7 años de experiencia especializado
-              en proyectos de climatización (HVAC), sistemas contra incendios,
-              redes de gas y piping industrial.
-            </p>
-
-            <div
-              class="flex flex-wrap gap-2 justify-center md:justify-start pt-2"
-            >
-              <span
-                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
-                >HVAC</span
-              >
-              <span
-                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
-                >Contra Incendios</span
-              >
-              <span
-                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
-                >Redes de Gas</span
-              >
-              <span
-                class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10"
-                >Piping</span
-              >
-            </div>
-
-            <div class="pt-4">
               <a
-                href="https://www.linkedin.com/in/viktorgmc210197/"
-                target="_blank"
-                class="inline-flex items-center gap-2 bg-[#0A66C2] hover:bg-[#084e96] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
+                href="#contacto"
+                class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-semibold text-blue-600 hover:text-blue-700 group-hover:text-blue-600 transition-colors"
               >
-                <i data-lucide="linkedin" class="w-4 h-4"></i>
-                <span data-i18n="lead_linkedin">Ver Perfil en LinkedIn</span>
+                <span data-i18n="srv_cta">Solicitar cotización</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
               </a>
-            </div>
+            </article>
+          </div>
+
+          <!-- Sectores atendidos -->
+          <div class="mt-14 pt-10 border-t border-slate-200" data-reveal>
+            <p class="text-center text-xs font-bold uppercase tracking-widest text-slate-500 mb-6" data-i18n="sectors_title">
+              Sectores atendidos
+            </p>
+            <ul class="flex flex-wrap items-center justify-center gap-2.5">
+              <li class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium border border-slate-200" data-i18n="sector_1">Industria</li>
+              <li class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium border border-slate-200" data-i18n="sector_2">Data centers</li>
+              <li class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium border border-slate-200" data-i18n="sector_3">Comercial</li>
+              <li class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium border border-slate-200" data-i18n="sector_4">Hospitales</li>
+              <li class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium border border-slate-200" data-i18n="sector_5">Alimentos y bebidas</li>
+              <li class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium border border-slate-200" data-i18n="sector_6">Edificios residenciales</li>
+            </ul>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ================= PREGUNTAS FRECUENTES ================= -->
-    <section id="faq" class="py-16 md:py-24 bg-white border-b border-slate-200">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-12">
-          <h2
-            data-i18n="faq_title"
-            class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3"
-          >
-            Preguntas Frecuentes
-          </h2>
-          <p data-i18n="faq_subtitle" class="text-slate-600 text-sm">
-            Aclaraciones clave sobre la gestión y desarrollo de proyectos.
-          </p>
-        </div>
-
-        <div class="space-y-4">
-          <div
-            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
-          >
-            <button
-              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
-            >
-              <span data-i18n="faq_q1"
-                >¿En qué etapa del proyecto debo contactar a VGM?</span
-              >
-              <i
-                data-lucide="chevron-down"
-                class="w-5 h-5 transition-transform duration-300"
-              ></i>
-            </button>
-            <div
-              data-i18n="faq_a1"
-              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
-            >
-              Idealmente desde el diseño conceptual para optimizar trazados.
-              También auditamos instalaciones en ejecución o ya operativas.
-            </div>
+      <!-- ================= PROYECTOS / CASOS ================= -->
+      <!-- CONTENIDO DE EJEMPLO: sustituir por proyectos reales de VGM -->
+      <section id="proyectos" class="py-16 md:py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-600 mb-3" data-i18n="projects_kicker">Proyectos representativos</span>
+            <h2 data-i18n="projects_title" class="font-display text-[1.75rem] sm:text-4xl font-bold text-slate-900 mb-4">
+              Resultados que se pueden auditar
+            </h2>
+            <p data-i18n="projects_subtitle" class="text-slate-600 text-sm sm:text-base">
+              Alcance, entregables y resultados de intervenciones representativas en climatización, fuego y piping.
+            </p>
           </div>
 
-          <div
-            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
-          >
-            <button
-              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
-            >
-              <span data-i18n="faq_q2"
-                >¿Qué entregables incluye un proyecto de ingeniería?</span
-              >
-              <i
-                data-lucide="chevron-down"
-                class="w-5 h-5 transition-transform duration-300"
-              ></i>
-            </button>
-            <div
-              data-i18n="faq_a2"
-              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
-            >
-              Memoria descriptiva, de cálculo, cómputos métricos, planos
-              detallados en CAD/BIM y especificaciones técnicas de equipos.
-            </div>
-          </div>
-
-          <div
-            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
-          >
-            <button
-              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
-            >
-              <span data-i18n="faq_q3"
-                >¿Con qué software de modelado trabajan?</span
-              >
-              <i
-                data-lucide="chevron-down"
-                class="w-5 h-5 transition-transform duration-300"
-              ></i>
-            </button>
-            <div
-              data-i18n="faq_a3"
-              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
-            >
-              Trabajamos con Autodesk Revit para modelado BIM en 3D y AutoCAD
-              para esquemas 2D, permitiendo la integración directa con
-              arquitectos e ingenieros civiles.
-            </div>
-          </div>
-
-          <div
-            class="border border-slate-200 rounded-xl overflow-hidden transition-colors"
-          >
-            <button
-              class="faq-btn w-full flex items-center justify-between p-5 text-left font-bold text-slate-800 hover:text-blue-600"
-            >
-              <span data-i18n="faq_q4"
-                >¿Los diseños facilitan los trámites de permisología?</span
-              >
-              <i
-                data-lucide="chevron-down"
-                class="w-5 h-5 transition-transform duration-300"
-              ></i>
-            </button>
-            <div
-              data-i18n="faq_a4"
-              class="faq-content hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
-            >
-              Sí, todos nuestros cálculos y esquemas técnicos se ajustan a
-              normativas internacionales (NFPA, ASHRAE) y regulaciones locales
-              para acelerar la aprobación institucional.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FORMULARIO DE CONTACTO ================= -->
-    <section
-      id="contacto"
-      class="py-16 md:py-24 bg-slate-900 text-white relative overflow-hidden"
-    >
-      <div class="max-w-xl mx-auto px-4 sm:px-6 relative z-10">
-        <div class="text-center mb-10">
-          <span
-            data-i18n="form_badge"
-            class="inline-block text-xs font-extrabold uppercase tracking-widest px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full mb-3 border border-blue-500/30"
-          >
-            Contacto Directo
-          </span>
-          <h2
-            data-i18n="form_title"
-            class="text-2xl sm:text-4xl font-extrabold text-white mb-3"
-          >
-            ¿Tienes un proyecto en mente?
-          </h2>
-          <p data-i18n="form_subtitle" class="text-slate-400 text-sm">
-            Déjanos tu mensaje y evaluaremos tus requerimientos de ingeniería.
-          </p>
-        </div>
-
-        <form
-          id="contact-form"
-          class="bg-slate-800/90 border border-blue-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl shadow-blue-900/20 backdrop-blur-md space-y-5"
-        >
-          <div>
-            <label
-              data-i18n="form_label_name"
-              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
-              >Nombre Completo</label
-            >
-            <input
-              type="text"
-              id="nombre"
-              required
-              placeholder="Ej: Carlos Mendoza"
-              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
-            />
-          </div>
-
-          <div>
-            <label
-              data-i18n="form_label_email"
-              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
-              >Correo Electrónico</label
-            >
-            <input
-              type="email"
-              id="email"
-              required
-              placeholder="carlos@empresa.com"
-              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
-            />
-          </div>
-
-          <div>
-            <label
-              data-i18n="form_label_service"
-              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
-              >Servicio Requerido</label
-            >
-            <select
-              id="servicio"
-              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
-            >
-              <option value="hvac">Climatización (HVAC)</option>
-              <option value="pci">Sistemas Contra Incendios (NFPA)</option>
-              <option value="gas">Redes de Gas y Piping</option>
-              <option value="auditoria">Auditoría / Inspección Técnica</option>
-            </select>
-          </div>
-
-          <div>
-            <label
-              data-i18n="form_label_msg"
-              class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2"
-              >Detalles del Proyecto</label
-            >
-            <textarea
-              id="mensaje"
-              rows="4"
-              required
-              placeholder="Describe brevemente el alcance de la consulta..."
-              class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-sm"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            data-i18n="form_btn"
-            class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.01]"
-          >
-            Enviar Mensaje
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- ================= FOOTER ================= -->
-    <footer
-      class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800/80"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800"
-        >
-          <div class="space-y-3">
-            <div class="flex items-center gap-2">
-              <div
-                class="w-7 h-7 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center"
-              >
-                V
+          <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+            <article class="group bg-white border border-slate-200 rounded-2xl p-7 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300" data-reveal>
+              <div class="flex items-center justify-between mb-5">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-wider">
+                  <i data-lucide="snowflake" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                  <span data-i18n="proj1_tag">HVAC</span>
+                </span>
+                <span class="font-mono text-xs text-slate-400" data-i18n="proj1_year">2024</span>
               </div>
-              <span class="text-white font-extrabold tracking-tight text-lg"
-                >VGM Engineering</span
-              >
-            </div>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Consultoría de ingeniería mecánica, climatización HVAC, redes de
-              incendios y piping industrial.
+              <h3 data-i18n="proj1_title" class="font-display text-lg font-bold text-slate-900 mb-2">
+                Climatización de nave industrial
+              </h3>
+              <p data-i18n="proj1_desc" class="text-sm text-slate-600 leading-relaxed mb-5">
+                Rediseño completo de distribución de aire y cálculo de cargas para una planta de alimentos.
+              </p>
+              <dl class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-5">
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-500" data-i18n="proj_metric_1">Superficie</dt>
+                  <dd class="font-display text-xl font-bold text-slate-900 mt-0.5" data-i18n="proj1_m1">4.500 m²</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-500" data-i18n="proj_metric_2">Norma</dt>
+                  <dd class="font-display text-xl font-bold text-slate-900 mt-0.5" data-i18n="proj1_m2">ASHRAE 62.1</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="group bg-white border border-slate-200 rounded-2xl p-7 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300" data-reveal>
+              <div class="flex items-center justify-between mb-5">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50 text-red-700 text-[11px] font-bold uppercase tracking-wider">
+                  <i data-lucide="flame" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                  <span data-i18n="proj2_tag">PCI</span>
+                </span>
+                <span class="font-mono text-xs text-slate-400" data-i18n="proj2_year">2025</span>
+              </div>
+              <h3 data-i18n="proj2_title" class="font-display text-lg font-bold text-slate-900 mb-2">
+                Red contra incendios de centro comercial
+              </h3>
+              <p data-i18n="proj2_desc" class="text-sm text-slate-600 leading-relaxed mb-5">
+                Cálculo hidráulico, trazado de rociadores y memorias para permiso de operación.
+              </p>
+              <dl class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-5">
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-500" data-i18n="proj_metric_3">Rociadores</dt>
+                  <dd class="font-display text-xl font-bold text-slate-900 mt-0.5" data-i18n="proj2_m1">180 uds.</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-500" data-i18n="proj_metric_4">Entrega</dt>
+                  <dd class="font-display text-xl font-bold text-slate-900 mt-0.5" data-i18n="proj2_m2">6 semanas</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="group bg-white border border-slate-200 rounded-2xl p-7 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300" data-reveal>
+              <div class="flex items-center justify-between mb-5">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 text-[11px] font-bold uppercase tracking-wider">
+                  <i data-lucide="git-branch" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                  <span data-i18n="proj3_tag">Piping</span>
+                </span>
+                <span class="font-mono text-xs text-slate-400" data-i18n="proj3_year">2025</span>
+              </div>
+              <h3 data-i18n="proj3_title" class="font-display text-lg font-bold text-slate-900 mb-2">
+                Auditoría de red de gas y piping
+              </h3>
+              <p data-i18n="proj3_desc" class="text-sm text-slate-600 leading-relaxed mb-5">
+                Inspección de sistemas existentes con informe de peritaje y plan de adecuación.
+              </p>
+              <dl class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-5">
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-500" data-i18n="proj_metric_5">Alcance</dt>
+                  <dd class="font-display text-xl font-bold text-slate-900 mt-0.5" data-i18n="proj3_m1">12 km</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-500" data-i18n="proj_metric_6">Cumplimiento</dt>
+                  <dd class="font-display text-xl font-bold text-slate-900 mt-0.5" data-i18n="proj3_m2">100 %</dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= METODOLOGÍA (SCROLL TIMELINE) ================= -->
+      <section id="metodologia" class="py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-14 md:mb-16">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-600 mb-3" data-i18n="method_kicker">Cómo trabajamos</span>
+            <h2 data-i18n="method_title" class="font-display text-[1.75rem] sm:text-4xl font-bold text-slate-900 mb-4">
+              Metodología de Trabajo
+            </h2>
+            <p data-i18n="method_subtitle" class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto">
+              Desplaza la página hacia abajo para seguir la progresión del proyecto.
             </p>
           </div>
 
-          <div>
-            <p
-              class="text-xs font-bold uppercase tracking-wider text-white mb-3"
-            >
-              Navegación
-            </p>
-            <ul class="space-y-2 text-xs">
-              <li>
-                <a href="#servicios" class="hover:text-white transition-colors"
-                  >Servicios Principales</a
+          <div class="relative ml-4 sm:ml-32" id="timeline-wrap">
+            <div class="absolute top-3 bottom-3 left-[15px] z-[1] w-[3px] bg-slate-200" aria-hidden="true"></div>
+            <div
+              id="timeline-progress"
+              class="absolute top-3 left-[15px] z-[2] h-0 w-[3px] bg-gradient-to-b from-blue-600 to-cyan-400 transition-[height] duration-150 ease-linear"
+              aria-hidden="true"
+            ></div>
+
+            <ol class="space-y-14">
+              <li class="timeline-step relative pl-10">
+                <div
+                  class="timeline-node absolute left-0 top-0 z-[3] flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-slate-300 bg-white text-sm font-bold text-slate-500 transition-all duration-[400ms] ease-[ease]"
                 >
+                  1
+                </div>
+                <h3 data-i18n="step1_title" class="font-display text-lg font-bold text-slate-900 mb-1">
+                  1. Levantamiento y Diagnóstico
+                </h3>
+                <p data-i18n="step1_desc" class="text-slate-600 text-sm leading-relaxed">
+                  Análisis técnico inicial en sitio o revisión de planos arquitectónicos para definir el alcance del
+                  proyecto.
+                </p>
               </li>
-              <li>
-                <a
-                  href="#metodologia"
-                  class="hover:text-white transition-colors"
-                  >Metodología de Trabajo</a
+
+              <li class="timeline-step relative pl-10">
+                <div
+                  class="timeline-node absolute left-0 top-0 z-[3] flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-slate-300 bg-white text-sm font-bold text-slate-500 transition-all duration-[400ms] ease-[ease]"
                 >
+                  2
+                </div>
+                <h3 data-i18n="step2_title" class="font-display text-lg font-bold text-slate-900 mb-1">
+                  2. Cálculo y Diseño de Ingeniería
+                </h3>
+                <p data-i18n="step2_desc" class="text-slate-600 text-sm leading-relaxed">
+                  Dimensionamiento de cargas, modelado 3D de sistemas y desarrollo de memorias descriptivas.
+                </p>
               </li>
-              <li>
-                <a href="#nosotros" class="hover:text-white transition-colors"
-                  >Liderazgo Técnico</a
+
+              <li class="timeline-step relative pl-10">
+                <div
+                  class="timeline-node absolute left-0 top-0 z-[3] flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-slate-300 bg-white text-sm font-bold text-slate-500 transition-all duration-[400ms] ease-[ease]"
                 >
+                  3
+                </div>
+                <h3 data-i18n="step3_title" class="font-display text-lg font-bold text-slate-900 mb-1">
+                  3. Documentación y Permisología
+                </h3>
+                <p data-i18n="step3_desc" class="text-slate-600 text-sm leading-relaxed">
+                  Elaboración de planos ejecutivos en CAD/BIM listos para licitación y trámites regulatorios.
+                </p>
               </li>
-              <li>
-                <a href="#faq" class="hover:text-white transition-colors"
-                  >Preguntas Frecuentes</a
+
+              <li class="timeline-step relative pl-10">
+                <div
+                  class="timeline-node absolute left-0 top-0 z-[3] flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-slate-300 bg-white text-sm font-bold text-slate-500 transition-all duration-[400ms] ease-[ease]"
                 >
+                  4
+                </div>
+                <h3 data-i18n="step4_title" class="font-display text-lg font-bold text-slate-900 mb-1">
+                  4. Supervisión y Pruebas Operativas
+                </h3>
+                <p data-i18n="step4_desc" class="text-slate-600 text-sm leading-relaxed">
+                  Acompañamiento en sitio durante la instalación y validación final de funcionamiento.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= HERRAMIENTAS Y NORMATIVA (CARRUSEL INFINITO) ================= -->
+      <section id="herramientas" class="py-12 bg-slate-50 border-y border-slate-200 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-7">
+          <p data-i18n="tools_title" class="text-xs font-bold uppercase tracking-widest text-slate-600">
+            Software de Modelado &amp; Normativa Técnica Especializada
+          </p>
+        </div>
+
+        <div
+          id="tools-marquee"
+          class="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+        >
+          <div
+            class="flex w-max animate-infinite-scroll hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] motion-reduce:animate-none"
+          >
+            <ul class="flex items-center gap-10 sm:gap-14 pr-10 sm:pr-14 shrink-0">
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="layers" class="w-6 h-6 text-blue-600" aria-hidden="true"></i> REVIT
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="file-code-2" class="w-6 h-6 text-blue-600" aria-hidden="true"></i> AUTOCAD
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="flame" class="w-6 h-6 text-red-500" aria-hidden="true"></i> NORMAS NFPA
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="wind" class="w-6 h-6 text-sky-500" aria-hidden="true"></i> ASHRAE
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="cpu" class="w-6 h-6 text-slate-500" aria-hidden="true"></i> ASME / PIPING
+              </li>
+            </ul>
+            <!-- Copia exacta para el bucle infinito sin salto visual -->
+            <ul class="flex items-center gap-10 sm:gap-14 pr-10 sm:pr-14 shrink-0" aria-hidden="true">
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="layers" class="w-6 h-6 text-blue-600"></i> REVIT
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="file-code-2" class="w-6 h-6 text-blue-600"></i> AUTOCAD
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="flame" class="w-6 h-6 text-red-500"></i> NORMAS NFPA
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="wind" class="w-6 h-6 text-sky-500"></i> ASHRAE
+              </li>
+              <li class="flex items-center gap-2 font-display font-bold text-slate-700 text-lg sm:text-xl tracking-tight">
+                <i data-lucide="cpu" class="w-6 h-6 text-slate-500"></i> ASME / PIPING
               </li>
             </ul>
           </div>
+        </div>
+      </section>
 
-          <div>
-            <p
-              class="text-xs font-bold uppercase tracking-wider text-white mb-3"
-            >
-              Contacto
+      <!-- ================= LIDERAZGO TÉCNICO ================= -->
+      <section id="nosotros" class="py-16 md:py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div
+          class="pointer-events-none absolute -top-24 right-0 h-[320px] w-[420px] bg-[radial-gradient(circle,rgba(37,99,235,0.18)_0%,rgba(15,23,42,0)_70%)] blur-[90px]"
+          aria-hidden="true"
+        ></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          <div class="text-center mb-12">
+            <span data-i18n="lead_kicker" class="text-xs font-bold uppercase tracking-widest text-blue-400">Dirección Técnica</span>
+            <h2 data-i18n="lead_title" class="font-display text-[1.75rem] sm:text-4xl font-bold text-white mt-1 mb-3">
+              Liderazgo de Proyectos
+            </h2>
+            <p data-i18n="lead_subtitle" class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+              Un único interlocutor técnico responsable, de la definición del alcance hasta la aprobación de
+              pruebas.
             </p>
-            <ul class="space-y-2 text-xs">
-              <li class="flex items-center gap-2">
-                <i data-lucide="mail" class="w-4 h-4 text-blue-500"></i>
-                <span>viktorgmc@gmail.com</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <i data-lucide="linkedin" class="w-4 h-4 text-blue-500"></i>
+          </div>
+
+          <div
+            class="bg-white/5 border border-white/15 rounded-3xl p-6 sm:p-10 shadow-2xl flex flex-col md:flex-row items-center gap-8 backdrop-blur-md"
+            data-reveal
+          >
+            <div
+              class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border-2 border-white/20 flex-shrink-0 bg-slate-800 relative"
+            >
+              <picture>
+                <source srcset="img/vgm.webp" type="image/webp" />
+                <img
+                  src="img/vgm-400.jpg"
+                  alt="Viktor Miquilena, ingeniero mecánico y consultor principal de VGM"
+                  width="192"
+                  height="192"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+              </picture>
+            </div>
+
+            <div class="text-center md:text-left space-y-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold text-white">Viktor Miquilena</h3>
+                <p data-i18n="lead_role" class="text-blue-400 font-medium text-sm mt-1">
+                  Ingeniero Mecánico | Consultor Principal en VGM
+                </p>
+              </div>
+
+              <p data-i18n="lead_bio" class="text-slate-300 text-sm leading-relaxed">
+                Ingeniero Mecánico con más de 7 años de experiencia especializado en proyectos de climatización
+                (HVAC), sistemas contra incendios, redes de gas y piping industrial.
+              </p>
+
+              <ul class="flex flex-wrap gap-2 justify-center md:justify-start pt-1">
+                <li class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10">HVAC</li>
+                <li class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10">Contra Incendios</li>
+                <li class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10">Redes de Gas</li>
+                <li class="bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10">Piping</li>
+              </ul>
+
+              <!-- Credenciales -->
+              <dl class="grid sm:grid-cols-2 gap-x-6 gap-y-2 pt-3 text-left">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" aria-hidden="true"></i>
+                  <dt class="sr-only" data-i18n="cred_1_label">Formación</dt>
+                  <dd class="text-xs text-slate-300" data-i18n="cred_1">Ingeniero Mecánico · UPV</dd>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i data-lucide="badge-check" class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" aria-hidden="true"></i>
+                  <dt class="sr-only" data-i18n="cred_2_label">Normativa</dt>
+                  <dd class="text-xs text-slate-300" data-i18n="cred_2">NFPA 13 · 20 · 30 · 101</dd>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i data-lucide="thermometer" class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" aria-hidden="true"></i>
+                  <dt class="sr-only" data-i18n="cred_3_label">HVAC</dt>
+                  <dd class="text-xs text-slate-300" data-i18n="cred_3">ASHRAE 62.1 · 90.1</dd>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i data-lucide="languages" class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" aria-hidden="true"></i>
+                  <dt class="sr-only" data-i18n="cred_4_label">Idiomas</dt>
+                  <dd class="text-xs text-slate-300" data-i18n="cred_4">Español · Inglés</dd>
+                </div>
+              </dl>
+
+              <div class="pt-4 flex flex-wrap items-center justify-center md:justify-start gap-3">
                 <a
                   href="https://www.linkedin.com/in/viktorgmc210197/"
                   target="_blank"
-                  class="hover:text-white transition-colors"
-                  >LinkedIn / Viktor Miquilena</a
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 bg-[#0A66C2] hover:bg-[#084e96] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
                 >
+                  <i data-lucide="linkedin" class="w-4 h-4" aria-hidden="true"></i>
+                  <span data-i18n="lead_linkedin">Ver Perfil en LinkedIn</span>
+                </a>
+                <a
+                  href="#contacto"
+                  class="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
+                >
+                  <span data-i18n="lead_cta">Agendar reunión</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TESTIMONIOS ================= -->
+      <!-- CONTENIDO DE EJEMPLO: sustituir por testimonios reales de clientes -->
+      <section id="testimonios" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-600 mb-3" data-i18n="testi_kicker">Confianza del cliente</span>
+            <h2 data-i18n="testi_title" class="font-display text-[1.75rem] sm:text-4xl font-bold text-slate-900 mb-4">
+              Lo que dicen de nuestro trabajo
+            </h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <figure class="bg-slate-50 border border-slate-200 rounded-2xl p-7 flex flex-col" data-reveal>
+              <div class="flex gap-0.5 mb-4 text-amber-400" aria-hidden="true">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <blockquote class="text-sm text-slate-700 leading-relaxed flex-1" data-i18n="testi_1">
+                «La auditoría nos ангlicó la red contra incendios antes de la inspección. Llegamos al permiso sin
+                observaciones.»
+              </blockquote>
+              <figcaption class="mt-5 pt-4 border-t border-slate-200">
+                <span class="block text-sm font-semibold text-slate-900" data-i18n="testi_1_name">Gerente de Mantenimiento</span>
+                <span class="block text-xs text-slate-500" data-i18n="testi_1_role">Industria de alimentos</span>
+              </figcaption>
+            </figure>
+
+            <figure class="bg-slate-50 border border-slate-200 rounded-2xl p-7 flex flex-col" data-reveal>
+              <div class="flex gap-0.5 mb-4 text-amber-400" aria-hidden="true">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <blockquote class="text-sm text-slate-700 leading-relaxed flex-1" data-i18n="testi_2">
+                «El modelo BIM nos ahorró semanas de coordinación con arquitectura. Todo llegó disciplinado y listo
+                para construir.»
+              </blockquote>
+              <figcaption class="mt-5 pt-4 border-t border-slate-200">
+                <span class="block text-sm font-semibold text-slate-900" data-i18n="testi_2_name">Jefe de Proyectos</span>
+                <span class="block text-xs text-slate-500" data-i18n="testi_2_role">Desarrollador inmobiliario</span>
+              </figcaption>
+            </figure>
+
+            <figure class="bg-slate-50 border border-slate-200 rounded-2xl p-7 flex flex-col" data-reveal>
+              <div class="flex gap-0.5 mb-4 text-amber-400" aria-hidden="true">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <blockquote class="text-sm text-slate-700 leading-relaxed flex-1" data-i18n="testi_3">
+                «Reportes claros y entregas a tiempo. Nuestro contratista principal no tuvo observaciones en la
+                revisión de calidad.»
+              </blockquote>
+              <figcaption class="mt-5 pt-4 border-t border-slate-200">
+                <span class="block text-sm font-semibold text-slate-900" data-i18n="testi_3_name">Coordinador de Planta</span>
+                <span class="block text-xs text-slate-500" data-i18n="testi_3_role">Operación industrial</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PREGUNTAS FRECUENTES ================= -->
+      <section id="faq" class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-12">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-600 mb-3" data-i18n="faq_kicker">Dudas frecuentes</span>
+            <h2 data-i18n="faq_title" class="font-display text-[1.75rem] sm:text-4xl font-bold text-slate-900 mb-3">
+              Preguntas Frecuentes
+            </h2>
+            <p data-i18n="faq_subtitle" class="text-slate-600 text-sm">
+              Aclaraciones clave sobre la gestión y desarrollo de proyectos.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="faq-item border border-slate-200 rounded-xl overflow-hidden bg-white transition-colors hover:border-blue-300">
+              <h3>
+                <button
+                  id="faq-btn-1"
+                  type="button"
+                  class="faq-btn w-full flex items-center justify-between gap-4 p-5 text-left font-bold text-slate-800 hover:text-blue-600 min-h-[56px]"
+                  aria-expanded="false"
+                  aria-controls="faq-panel-1"
+                >
+                  <span data-i18n="faq_q1">¿En qué etapa del proyecto debo contactar a VGM?</span>
+                  <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div id="faq-panel-1" role="region" aria-labelledby="faq-btn-1" class="faq-content hidden overflow-hidden">
+                <p class="px-5 pb-5 pt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100" data-i18n="faq_a1">
+                  Idealmente desde el diseño conceptual para optimizar trazados. También auditamos instalaciones en
+                  ejecución o ya operativas.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item border border-slate-200 rounded-xl overflow-hidden bg-white transition-colors hover:border-blue-300">
+              <h3>
+                <button
+                  id="faq-btn-2"
+                  type="button"
+                  class="faq-btn w-full flex items-center justify-between gap-4 p-5 text-left font-bold text-slate-800 hover:text-blue-600 min-h-[56px]"
+                  aria-expanded="false"
+                  aria-controls="faq-panel-2"
+                >
+                  <span data-i18n="faq_q2">¿Qué entregables incluye un proyecto de ingeniería?</span>
+                  <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div id="faq-panel-2" role="region" aria-labelledby="faq-btn-2" class="faq-content hidden overflow-hidden">
+                <p class="px-5 pb-5 pt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100" data-i18n="faq_a2">
+                  Memoria descriptiva, de cálculo, cómputos métricos, planos detallados en CAD/BIM y especificaciones
+                  técnicas de equipos.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item border border-slate-200 rounded-xl overflow-hidden bg-white transition-colors hover:border-blue-300">
+              <h3>
+                <button
+                  id="faq-btn-3"
+                  type="button"
+                  class="faq-btn w-full flex items-center justify-between gap-4 p-5 text-left font-bold text-slate-800 hover:text-blue-600 min-h-[56px]"
+                  aria-expanded="false"
+                  aria-controls="faq-panel-3"
+                >
+                  <span data-i18n="faq_q3">¿Con qué software de modelado trabajan?</span>
+                  <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div id="faq-panel-3" role="region" aria-labelledby="faq-btn-3" class="faq-content hidden overflow-hidden">
+                <p class="px-5 pb-5 pt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100" data-i18n="faq_a3">
+                  Trabajamos con Autodesk Revit para modelado BIM en 3D y AutoCAD para esquemas 2D, permitiendo la
+                  integración directa con arquitectos e ingenieros civiles.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item border border-slate-200 rounded-xl overflow-hidden bg-white transition-colors hover:border-blue-300">
+              <h3>
+                <button
+                  id="faq-btn-4"
+                  type="button"
+                  class="faq-btn w-full flex items-center justify-between gap-4 p-5 text-left font-bold text-slate-800 hover:text-blue-600 min-h-[56px]"
+                  aria-expanded="false"
+                  aria-controls="faq-panel-4"
+                >
+                  <span data-i18n="faq_q4">¿Los diseños facilitan los trámites de permisología?</span>
+                  <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div id="faq-panel-4" role="region" aria-labelledby="faq-btn-4" class="faq-content hidden overflow-hidden">
+                <p class="px-5 pb-5 pt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100" data-i18n="faq_a4">
+                  Sí, todos nuestros cálculos y esquemas técnicos se ajustan a normativas internacionales (NFPA,
+                  ASHRAE) y regulaciones locales para acelerar la aprobación institucional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FORMULARIO DE CONTACTO ================= -->
+      <section id="contacto" class="py-16 md:py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div
+          class="pointer-events-none absolute -top-32 left-1/4 h-[360px] w-[460px] bg-[radial-gradient(circle,rgba(37,99,235,0.22)_0%,rgba(15,23,42,0)_70%)] blur-[100px]"
+          aria-hidden="true"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
+            <!-- Info de contacto -->
+            <div>
+              <span
+                data-i18n="form_badge"
+                class="inline-block text-xs font-extrabold uppercase tracking-widest px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full mb-4 border border-blue-500/30"
+                >Contacto Directo</span
+              >
+              <h2 data-i18n="form_title" class="font-display text-[1.75rem] sm:text-4xl font-bold text-white mb-3">
+                ¿Tienes un proyecto en mente?
+              </h2>
+              <p data-i18n="form_subtitle" class="text-slate-300 text-sm leading-relaxed mb-8 max-w-md">
+                Déjanos tu mensaje y evaluaremos tus requerimientos de ingeniería. También puedes contactarme
+                directamente por correo o WhatsApp.
+              </p>
+
+              <ul class="space-y-3">
+                <!-- EDITAR: número de WhatsApp (formato internacional sin + ni espacios) -->
+                <li>
+                  <a
+                    href="https://wa.me/573000000000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 hover:border-emerald-400/40 hover:bg-white/10 transition-all p-4"
+                  >
+                    <span class="grid h-11 w-11 place-items-center rounded-xl bg-emerald-500/15 text-emerald-400 shrink-0">
+                      <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
+                    </span>
+                    <span>
+                      <span class="block text-xs uppercase tracking-wider text-slate-400" data-i18n="contact_whatsapp">WhatsApp</span>
+                      <span class="block text-sm font-semibold text-white mt-0.5">+57 300 000 0000</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:viktorgmc@gmail.com?subject=Consulta%20de%20proyecto%20%E2%80%94%20VGM%20Engineering"
+                    class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 hover:border-blue-400/40 hover:bg-white/10 transition-all p-4"
+                  >
+                    <span class="grid h-11 w-11 place-items-center rounded-xl bg-blue-500/15 text-blue-400 shrink-0">
+                      <i data-lucide="mail" class="w-5 h-5" aria-hidden="true"></i>
+                    </span>
+                    <span class="min-w-0">
+                      <span class="block text-xs uppercase tracking-wider text-slate-400" data-i18n="contact_email">Correo</span>
+                      <span class="block text-sm font-semibold text-white mt-0.5 truncate">viktorgmc@gmail.com</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/viktorgmc210197/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 hover:border-blue-400/40 hover:bg-white/10 transition-all p-4"
+                  >
+                    <span class="grid h-11 w-11 place-items-center rounded-xl bg-[#0A66C2]/20 text-[#4a9eff] shrink-0">
+                      <i data-lucide="linkedin" class="w-5 h-5" aria-hidden="true"></i>
+                    </span>
+                    <span>
+                      <span class="block text-xs uppercase tracking-wider text-slate-400" data-i18n="contact_linkedin">LinkedIn</span>
+                      <span class="block text-sm font-semibold text-white mt-0.5">Viktor Miquilena</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <span class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-slate-300 shrink-0">
+                    <i data-lucide="map-pin" class="w-5 h-5" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    <span class="block text-xs uppercase tracking-wider text-slate-400" data-i18n="contact_zone">Cobertura</span>
+                    <span class="block text-sm font-semibold text-white mt-0.5" data-i18n="contact_zone_value">Bogotá, Colombia · Proyectos en LATAM</span>
+                  </span>
+                </li>
+              </ul>
+
+              <p class="flex items-center gap-2 mt-6 text-xs text-slate-400">
+                <i data-lucide="clock" class="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true"></i>
+                <span data-i18n="contact_hours">Lunes a viernes, 8:00 – 18:00 (GMT-5) · Respuesta garantizada en menos de 24 h</span>
+              </p>
+            </div>
+
+            <!-- Formulario -->
+            <form
+              id="contact-form"
+              data-endpoint=""
+              novalidate
+              class="bg-slate-800/80 border border-blue-500/25 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-blue-950/40 backdrop-blur-md"
+            >
+              <!-- Honeypot anti-spam -->
+              <div class="hidden" aria-hidden="true">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div id="form-status" role="status" aria-live="polite" class="hidden mb-5 rounded-xl border px-4 py-3 text-sm"></div>
+
+              <div class="space-y-5">
+                <div>
+                  <label for="nombre" data-i18n="form_label_name" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                    Nombre Completo
+                  </label>
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    autocomplete="name"
+                    required
+                    placeholder="Ej: Carlos Mendoza"
+                    aria-describedby="error-nombre"
+                    class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 outline-none transition-all text-sm"
+                  />
+                  <p id="error-nombre" class="error-msg hidden mt-1.5 text-xs text-red-400"></p>
+                </div>
+
+                <div>
+                  <label for="email" data-i18n="form_label_email" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                    Correo Electrónico
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    required
+                    placeholder="carlos@empresa.com"
+                    aria-describedby="error-email"
+                    class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 outline-none transition-all text-sm"
+                  />
+                  <p id="error-email" class="error-msg hidden mt-1.5 text-xs text-red-400"></p>
+                </div>
+
+                <div>
+                  <label for="servicio" data-i18n="form_label_service" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                    Servicio Requerido
+                  </label>
+                  <select
+                    id="servicio"
+                    name="servicio"
+                    required
+                    aria-describedby="error-servicio"
+                    class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 outline-none transition-all text-sm"
+                  >
+                    <option value="" data-i18n="form_opt_placeholder">Selecciona una especialidad…</option>
+                    <option value="hvac" data-i18n="form_opt_hvac">Climatización (HVAC)</option>
+                    <option value="pci" data-i18n="form_opt_pci">Sistemas Contra Incendios (NFPA)</option>
+                    <option value="gas" data-i18n="form_opt_gas">Redes de Gas y Piping</option>
+                    <option value="auditoria" data-i18n="form_opt_auditoria">Auditoría / Inspección Técnica</option>
+                    <option value="supervision" data-i18n="form_opt_supervision">Supervisión de montaje (QA/QC)</option>
+                    <option value="otro" data-i18n="form_opt_otro">Otro</option>
+                  </select>
+                  <p id="error-servicio" class="error-msg hidden mt-1.5 text-xs text-red-400"></p>
+                </div>
+
+                <div>
+                  <label for="mensaje" data-i18n="form_label_msg" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                    Detalles del Proyecto
+                  </label>
+                  <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="4"
+                    required
+                    autocomplete="off"
+                    placeholder="Describe brevemente el alcance de la consulta..."
+                    aria-describedby="error-mensaje hint-mensaje"
+                    class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25 outline-none transition-all text-sm resize-y"
+                  ></textarea>
+                  <div class="flex items-center justify-between gap-3 mt-1.5">
+                    <p id="hint-mensaje" class="text-xs text-slate-400" data-i18n="form_hint_msg">Incluye alcance, ubicación y fecha deseada.</p>
+                    <p id="error-mensaje" class="error-msg hidden text-xs text-red-400"></p>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  id="form-submit"
+                  class="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-600/25 transition-all hover:scale-[1.01] inline-flex items-center justify-center gap-2"
+                >
+                  <span id="form-btn-label" data-i18n="form_btn">Enviar Mensaje</span>
+                </button>
+
+                <p class="text-[11px] text-slate-400 leading-relaxed text-center" data-i18n="form_privacy">
+                  Al enviar aceptas que VGM use tus datos únicamente para responder esta consulta.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+          <div class="space-y-3">
+            <div class="flex items-center gap-2.5">
+              <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 5l8 14 8-14" />
+                </svg>
+              </span>
+              <span class="font-display text-white font-extrabold tracking-tight text-lg">VGM Engineering</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" data-i18n="footer_desc">
+              Consultoría de ingeniería mecánica, climatización HVAC, redes de incendios y piping industrial.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-white mb-3" data-i18n="footer_nav">Navegación</p>
+            <ul class="space-y-2 text-xs">
+              <li><a href="#servicios" class="inline-block py-1 hover:text-white transition-colors" data-i18n="footer_link_services">Servicios Principales</a></li>
+              <li><a href="#proyectos" class="inline-block py-1 hover:text-white transition-colors" data-i18n="footer_link_projects">Proyectos</a></li>
+              <li><a href="#metodologia" class="inline-block py-1 hover:text-white transition-colors" data-i18n="footer_link_method">Metodología de Trabajo</a></li>
+              <li><a href="#nosotros" class="inline-block py-1 hover:text-white transition-colors" data-i18n="footer_link_lead">Liderazgo Técnico</a></li>
+              <li><a href="#faq" class="inline-block py-1 hover:text-white transition-colors" data-i18n="footer_link_faq">Preguntas Frecuentes</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-white mb-3" data-i18n="footer_contact">Contacto</p>
+            <ul class="space-y-2 text-xs">
+              <li class="flex items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true"></i>
+                <a href="mailto:viktorgmc@gmail.com" class="hover:text-white transition-colors">viktorgmc@gmail.com</a>
               </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="linkedin" class="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true"></i>
+                <a href="https://www.linkedin.com/in/viktorgmc210197/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                  LinkedIn / Viktor Miquilena
+                </a>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="map-pin" class="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true"></i>
+                <span data-i18n="footer_zone">Bogotá, Colombia · LATAM</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-white mb-3" data-i18n="footer_standards">Normativa</p>
+            <ul class="space-y-2 text-xs">
+              <li class="flex items-center gap-2"><span class="font-mono text-blue-400">NFPA</span><span>13 · 20 · 30 · 101</span></li>
+              <li class="flex items-center gap-2"><span class="font-mono text-blue-400">ASHRAE</span><span>62.1 · 90.1</span></li>
+              <li class="flex items-center gap-2"><span class="font-mono text-blue-400">ASME</span><span>B31 · B31.3</span></li>
             </ul>
           </div>
         </div>
 
-        <div
-          class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500"
-        >
-          <p>
-            © 2026 VGM Engineering Consulting. Todos los derechos reservados.
-          </p>
-          <div class="flex gap-4">
-            <a href="#inicio" class="hover:text-slate-300">Volver arriba ↑</a>
+        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p data-i18n="footer_copy">© 2026 VGM Engineering Consulting. Todos los derechos reservados.</p>
+          <div class="flex items-center gap-5">
+            <a href="#inicio" class="inline-flex items-center gap-1.5 py-1 hover:text-slate-200 transition-colors">
+              <span data-i18n="footer_top">Volver arriba</span>
+              <i data-lucide="arrow-up" class="w-3.5 h-3.5" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
     </footer>
 
-    <script src="main.js"></script>
+    <!-- ================= CTA FIJO MÓVIL ================= -->
+    <div
+      id="mobile-cta"
+      class="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] flex items-center gap-2.5 shadow-[0_-8px_30px_-12px_rgba(15,23,42,0.25)]"
+    >
+      <a
+        href="https://wa.me/573000000000"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Escribir por WhatsApp"
+        class="grid h-12 w-12 place-items-center rounded-xl bg-emerald-500 text-white shrink-0 shadow-md shadow-emerald-500/30"
+      >
+        <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
+      </a>
+      <a
+        href="#contacto"
+        data-i18n="cta_mobile"
+        class="flex-1 h-12 rounded-xl bg-blue-600 text-white font-semibold text-sm grid place-items-center shadow-md shadow-blue-600/30"
+        >Solicitar Consultoría</a
+      >
+    </div>
+
+    <!-- ================= BOTONES FLOTANTES ================= -->
+    <div class="fixed bottom-24 right-4 lg:bottom-6 z-40 flex flex-col items-end gap-3">
+      <button
+        id="back-to-top"
+        type="button"
+        aria-label="Volver arriba"
+        class="hidden h-11 w-11 place-items-center rounded-full bg-slate-900 text-white shadow-lg shadow-slate-900/30 transition-all hover:bg-blue-600"
+      >
+        <i data-lucide="arrow-up" class="w-5 h-5" aria-hidden="true"></i>
+      </button>
+      <a
+        href="https://wa.me/573000000000"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Escribir por WhatsApp"
+        class="hidden lg:grid h-12 w-12 place-items-center rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/30 transition-transform hover:scale-110"
+      >
+        <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <script src="main.js" defer></script>
   </body>
 </html>

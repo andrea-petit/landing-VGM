@@ -1,120 +1,271 @@
 /* ==========================================================================
-   HOJA DE ESTILOS PERSONALIZADA - VGM ENGINEERING CONSULTING
+   VGM ENGINEERING — ESTILOS PROPIOS
+   Complementan a Tailwind (CDN). Todo lo visual sigue viniendo de utilidades;
+   aquí viven solo los comportamientos que no se pueden expresar de forma
+   declarativa: animaciones de entrada, foco, acordeón y ajustes finos.
    ========================================================================== */
 
-/* Glow Effects de Fondo para la Hero Section */
-.hero-glow-1 {
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
-  filter: blur(90px);
+/* --------------------------------------------------------------------------
+   1. BASE
+   -------------------------------------------------------------------------- */
+
+html {
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+/* Enlace de salto al contenido */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+/* Los iconos decorativos nunca deben stealing el foco ni ser leídos */
+svg[aria-hidden='true'] {
   pointer-events: none;
 }
 
-.hero-glow-2 {
-  position: absolute;
-  bottom: -50px;
-  right: 10%;
-  width: 400px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
-  filter: blur(100px);
-  pointer-events: none;
+/* --------------------------------------------------------------------------
+   2. ANIMACIONES DE ENTRADA (REVEAL)
+   Solo se activan si hay JS (clase .js en <html>). Sin JS el contenido
+   es visible desde el primer pintado: nunca queda contenido invisible.
+   -------------------------------------------------------------------------- */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.7, 0.3, 1),
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-/* ==========================================================================
-   METODOLOGÍA DE TRABAJO: TIMELINE ANIMADO POR SCROLL
-   ========================================================================== */
-
-/* Línea Gris Base */
-.timeline-line-bg {
-  position: absolute;
-  top: 12px;
-  bottom: 12px;
-  left: 15px;
-  width: 3px;
-  background-color: #e2e8f0;
-  z-index: 1;
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-/* Línea Azul de Progreso */
-.timeline-line-progress {
-  position: absolute;
-  top: 12px;
-  left: 15px;
-  width: 3px;
-  height: 0%;
-  background-color: #2563eb;
-  z-index: 2;
-  transition: height 0.2s linear;
+/* --------------------------------------------------------------------------
+   3. LINK ACTIVO EN EL NAV (SCROLL-SPY)
+   -------------------------------------------------------------------------- */
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
 }
 
-/* Nodos (Círculos numerados) */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.15rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3b82f6, #22d3ee);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(0.45);
+}
+
+.nav-link.is-active {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Idioma activo */
+.lang-opt {
+  transition: color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.55;
+}
+
+.lang-opt.is-active {
+  opacity: 1;
+  color: #2563eb;
+  font-weight: 800;
+}
+
+/* --------------------------------------------------------------------------
+   4. TIMELINE (METODOLOGÍA)
+   Nodo centrado sobre el raíl: left-0 (32 px) sobre un raíl de 3 px en left-15px.
+   -------------------------------------------------------------------------- */
+
 .timeline-node {
-  position: absolute;
-  left: -25px;
-  top: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 9999px;
-  background-color: #ffffff;
-  border: 3px solid #cbd5e1;
-  color: #64748b;
-  font-weight: 700;
-  font-size: 0.875rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  transition: all 0.4s ease;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 
-/* Estado Activo del Nodo */
-.timeline-step.active .timeline-node {
+.timeline-node.is-active {
   background-color: #2563eb;
   border-color: #2563eb;
-  color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
 }
 
-/* Rotación de Flecha en Acordeón FAQ */
-.faq-btn i {
-  transition: transform 0.3s ease;
+.timeline-step {
+  transition: opacity 0.4s ease;
 }
 
-.faq-btn.active i {
+/* --------------------------------------------------------------------------
+   5. ACORDEÓN FAQ
+   La animación se hace por altura; el panel usa display:none cuando está
+   cerrado (hidden) para que no lo lean los lectores de pantalla.
+   -------------------------------------------------------------------------- */
+
+.faq-btn[aria-expanded='true'] {
+  color: #2563eb;
+}
+
+.faq-btn[aria-expanded='true'] svg {
   transform: rotate(180deg);
 }
 
-/* Compensación de Altura para el Menú Sticky */
-html {
-  scroll-padding-top: 5rem;
+/* --------------------------------------------------------------------------
+   6. FORMULARIO
+   -------------------------------------------------------------------------- */
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px #0f172a inset;
+  transition: background-color 9999s ease-out;
 }
 
-/* ==========================================================================
-   ANIMACIÓN DE CARRUSEL DE HERRAMIENTAS
-   ========================================================================== */
+/* Opciones del <select> en dark mode nativo (Windows/Chrome usa fondo claro) */
+select option {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
 
-@keyframes infiniteScroll {
-  from {
-    transform: translateX(0);
-  }
+.field-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+#form-status.is-success {
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+}
+
+#form-status.is-error {
+  background-color: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.spinner {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  animation: vgm-spin 0.7s linear infinite;
+}
+
+@keyframes vgm-spin {
   to {
-    transform: translateX(-50%);
+    transform: rotate(360deg);
   }
 }
 
-.animate-infinite-scroll {
-  display: flex;
-  width: max-content;
-  animation: infiniteScroll 25s linear infinite;
+/* --------------------------------------------------------------------------
+   7. BOTONES FLOTANTES
+   -------------------------------------------------------------------------- */
+
+/* El carrusel se pausa cuando sale del viewport */
+.is-paused {
+  animation-play-state: paused !important;
 }
 
-/* Pausar el movimiento al pasar el cursor (Hover) */
-.animate-infinite-scroll:hover {
-  animation-play-state: paused;
+#back-to-top.is-visible {
+  display: grid !important;
+  opacity: 1;
+  transform: none;
+}
+
+#back-to-top {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   8. SCROLLBAR (desktop)
+   -------------------------------------------------------------------------- */
+
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border: 3px solid #f1f5f9;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  #back-to-top {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. IMPRESIÓN
+   -------------------------------------------------------------------------- */
+
+@media print {
+  header,
+  #mobile-cta,
+  .fixed,
+  [data-reveal] {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
 }
